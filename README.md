@@ -1,2 +1,2 @@
-# rpc
-springmvc + mybatis + dubbo
+# dubbo
+dubbo
