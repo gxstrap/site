@@ -111,7 +111,12 @@
 			<groupId>com.netflix.curator</groupId>
 			<artifactId>curator-framework</artifactId>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongodb-driver</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
