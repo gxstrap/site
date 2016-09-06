@@ -25,6 +25,19 @@ public class User extends BaseModel {
     /** salt码 **/
     private String salt;
 
+    public User() {
+        super();
+    }
+
+    public User(String id, String email, String loginName, String userName, String password) {
+        super();
+        setId(id);
+        this.email = email;
+        this.loginName = loginName;
+        this.userName = userName;
+        this.password = password;
+    }
+
     public String getEmail() {
         return email;
     }

@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSON;
 import com.rpc.auth.mapper.PermissionMapper;
@@ -22,6 +24,7 @@ import com.rpc.auth.model.RolePermission;
 import com.rpc.auth.model.User;
 import com.rpc.auth.model.UserRole;
 import com.rpc.auth.service.AuthService;
+import com.rpc.auth.service.UserService;
 import com.rpc.auth.util.UserEncodes;
 import com.rpc.common.constants.Constants;
 import com.rpc.common.exception.BusinessException;
@@ -48,6 +51,9 @@ public class AuthServiceImpl implements AuthService {
 
     @Autowired
     private RolePermissionMapper rolePermissionMapper;
+
+    @Autowired
+    private UserService userService;
 
     @Override
     public Page<User> paginateUser(Page<User> page) {
@@ -196,6 +202,53 @@ public class AuthServiceImpl implements AuthService {
         ur.setIsDel(Constants.IS_DEL_N);
         ur.setCreateTime(DateUtil.getSystemDateTime());
         userRoleMapper.insert(ur);
+    }
+
+    @Transactional(propagation = Propagation.NOT_SUPPORTED) // 不开启事务
+    @Override
+    public void add(User zs, User zs2) {
+        try {
+            userService.addUser(zs);
+        } catch (Exception e) {
+            log.error("# addUser fail , error message=[{}]", e.getMessage());
+        }
+        try {
+            saveUser(zs2);
+        } catch (Exception e) {
+            log.error("# saveUser fail , error message=[{}]", e.getMessage());
+        }
+    }
+
+    @Override
+    public void addUser(User user) {
+        if (user == null) {
+            throw new BusinessException("user.registr.error", "注册信息错误");
+        }
+
+        if (StringUtils.isBlank(user.getLoginName()) || StringUtils.isBlank(user.getPassword())) {
+            throw new BusinessException("user.registr.error", "注册信息错误");
+        }
+
+        UserEncodes.entryptPassword(user);
+        user.setIsDel(Constants.IS_DEL_N);
+        user.setCreateTime(DateUtil.getSystemDateTime());
+        userMapper.insert(user);
+    }
+
+    @Override
+    public void saveUser(User user) {
+        if (user == null) {
+            throw new BusinessException("user.registr.error", "注册信息错误");
+        }
+
+        if (StringUtils.isBlank(user.getLoginName()) || StringUtils.isBlank(user.getPassword())) {
+            throw new BusinessException("user.registr.error", "注册信息错误");
+        }
+
+        UserEncodes.entryptPassword(user);
+        user.setIsDel(Constants.IS_DEL_N);
+        user.setCreateTime(DateUtil.getSystemDateTime());
+        userMapper.insert(user);
     }
 
 }

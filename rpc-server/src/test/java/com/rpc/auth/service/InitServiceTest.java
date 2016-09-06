@@ -30,6 +30,7 @@ public class InitServiceTest {
 
     @Autowired
     private AuthService authService;
+    
 
     /**
      * 创建角色
