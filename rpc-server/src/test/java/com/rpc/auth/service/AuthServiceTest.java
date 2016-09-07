@@ -59,21 +59,17 @@ public class AuthServiceTest {
     public void user() {
         try {
             List<User> list1 = new ArrayList<User>();
-            list1.add(new User("1000100400000000003","wangxin","王鑫","infowangxin@139.com","123456"));
-            User wx = new User();
-            wx.setId("1000100400000000003");
-            wx.setLoginName("wangxin");
-            wx.setUserName("王鑫");
-            wx.setEmail("infowangxin@139.com");
-            wx.setPassword("123456");
-
-            User zs = new User();
-            zs.setId("1000100400000000004");
-            zs.setLoginName("zhangsan");
-            zs.setUserName("张三");
-            zs.setEmail("zhangsan@139.com");
-            zs.setPassword("123456");
-            authService.add(wx, zs);
+            list1.add(new User("1000100400000000002","wangxin","王鑫1","infowangxin@139.com","123456"));
+            list1.add(new User("1000100400000000003","wangxin","王鑫2","infowangxin@139.com","123456"));
+            list1.add(new User("1000100400000000004","wangxin","王鑫3","infowangxin@139.com","123456"));
+            
+            
+            List<User> list2 = new ArrayList<User>();
+            list2.add(new User("1000100400000000005","wangxin","王鑫4","infowangxin@139.com","123456"));
+            list2.add(new User("1000100400000000006","wangxin","王鑫5","infowangxin@139.com","123456"));
+            list2.add(new User("1000100400000000007","wangxin","王鑫6","infowangxin@139.com","123456"));
+            
+            authService.add(list1,list2);
 
         } catch (Exception e) {
             e.printStackTrace();

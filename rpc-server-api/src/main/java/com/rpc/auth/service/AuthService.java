@@ -126,10 +126,10 @@ public interface AuthService {
      */
     public void addUser(User user, Role role);
 
-    public void add(User zs, User zs2);
+    public void add(List<User> list1, List<User> list2);
 
-    public void addUser(User user);
+    public void addUser(List<User> list);
 
-    public void saveUser(User user);
+    public void saveUser(List<User> list);
 
 }

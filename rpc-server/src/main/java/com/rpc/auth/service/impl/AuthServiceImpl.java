@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -206,49 +207,71 @@ public class AuthServiceImpl implements AuthService {
 
     @Transactional(propagation = Propagation.NOT_SUPPORTED) // 不开启事务
     @Override
-    public void add(User zs, User zs2) {
+    public void add(List<User> list1, List<User> list2) {
         try {
-            userService.addUser(zs);
+            userService.addUser(list1);
         } catch (Exception e) {
             log.error("# addUser fail , error message=[{}]", e.getMessage());
         }
         try {
-            saveUser(zs2);
+            saveUser(list2);
         } catch (Exception e) {
             log.error("# saveUser fail , error message=[{}]", e.getMessage());
         }
     }
 
     @Override
-    public void addUser(User user) {
-        if (user == null) {
-            throw new BusinessException("user.registr.error", "注册信息错误");
-        }
+    public void addUser(List<User> list) {
+        if (CollectionUtils.isEmpty(list))
+            throw new BusinessException("user.add.fail", "用户新增失败");
 
-        if (StringUtils.isBlank(user.getLoginName()) || StringUtils.isBlank(user.getPassword())) {
-            throw new BusinessException("user.registr.error", "注册信息错误");
-        }
+        for (User user : list) {
 
-        UserEncodes.entryptPassword(user);
-        user.setIsDel(Constants.IS_DEL_N);
-        user.setCreateTime(DateUtil.getSystemDateTime());
-        userMapper.insert(user);
+            try {
+
+                if (user == null) {
+                    throw new BusinessException("user.registr.error", "注册信息错误");
+                }
+
+                if (StringUtils.isBlank(user.getLoginName()) || StringUtils.isBlank(user.getPassword())) {
+                    throw new BusinessException("user.registr.error", "注册信息错误");
+                }
+
+                UserEncodes.entryptPassword(user);
+                user.setIsDel(Constants.IS_DEL_N);
+                user.setCreateTime(DateUtil.getSystemDateTime());
+                userMapper.insert(user);
+            } catch (Exception e) {
+                log.error("#新增用户失败,error message=[{}]", e.getMessage());
+            }
+        }
     }
 
     @Override
-    public void saveUser(User user) {
-        if (user == null) {
-            throw new BusinessException("user.registr.error", "注册信息错误");
-        }
+    public void saveUser(List<User> list) {
+        if (CollectionUtils.isEmpty(list))
+            throw new BusinessException("user.add.fail", "用户新增失败");
 
-        if (StringUtils.isBlank(user.getLoginName()) || StringUtils.isBlank(user.getPassword())) {
-            throw new BusinessException("user.registr.error", "注册信息错误");
-        }
+        for (User user : list) {
 
-        UserEncodes.entryptPassword(user);
-        user.setIsDel(Constants.IS_DEL_N);
-        user.setCreateTime(DateUtil.getSystemDateTime());
-        userMapper.insert(user);
+            try {
+
+                if (user == null) {
+                    throw new BusinessException("user.registr.error", "注册信息错误");
+                }
+
+                if (StringUtils.isBlank(user.getLoginName()) || StringUtils.isBlank(user.getPassword())) {
+                    throw new BusinessException("user.registr.error", "注册信息错误");
+                }
+
+                UserEncodes.entryptPassword(user);
+                user.setIsDel(Constants.IS_DEL_N);
+                user.setCreateTime(DateUtil.getSystemDateTime());
+                userMapper.insert(user);
+            } catch (Exception e) {
+                log.error("#新增用户失败,error message=[{}]", e.getMessage());
+            }
+        }
     }
 
 }
