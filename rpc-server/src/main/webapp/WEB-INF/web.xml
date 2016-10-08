@@ -9,12 +9,11 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
+			<!-- redis没有加载 -->
 			classpath*:spring/applicationContext-dao-datasource.xml,
 			classpath*:spring/applicationContext-dao-transaction.xml,
 			classpath*:spring/applicationContext-dubbo.xml,
-			classpath*:spring/applicationContext-mvc.xml,
 			classpath*:spring/applicationContext-mybatis.xml,
-			classpath*:spring/applicationContext-redis.xml,
 			classpath*:spring/applicationContext.xml,
 			classpath*:spring/service/applicationContext-*.xml
 		</param-value>
@@ -44,22 +43,6 @@
 		<filter-name>characterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
-	<!-- SpringMVC配置 -->
-	<servlet>
-		<servlet-name>dispatcherServlet</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath*:spring/framework/applicationContext-mvc.xml</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>dispatcherServlet</servlet-name>
-		<url-pattern>/</url-pattern>
-	</servlet-mapping>
 
 	<error-page>
 		<error-code>403</error-code>
