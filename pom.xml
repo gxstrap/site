@@ -14,10 +14,10 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>rpc-logs</module>
-		<module>rpc-server</module>
-		<module>rpc-server-api</module>
-		<module>rpc-web</module>
+		<module>logs</module>
+		<module>server</module>
+		<module>server-api</module>
+		<module>web</module>
 	</modules>
 
 	<properties>
@@ -415,7 +415,7 @@
 
 			<dependency>
 				<groupId>com.rpc</groupId>
-				<artifactId>rpc-server-api</artifactId>
+				<artifactId>server-api</artifactId>
 				<version>1.0</version>
 			</dependency>
 

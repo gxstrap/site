@@ -146,7 +146,7 @@
 
 		<dependency>
 			<groupId>com.rpc</groupId>
-			<artifactId>rpc-server-api</artifactId>
+			<artifactId>server-api</artifactId>
 		</dependency>
 
 		<!-- junit -->
