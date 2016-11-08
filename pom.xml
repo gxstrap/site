@@ -18,15 +18,20 @@
 		<module>server</module>
 		<module>server-api</module>
 		<module>web</module>
+		<module>job-console</module>
 	</modules>
 
 	<properties>
+		<project.build.jdkVersion>1.7</project.build.jdkVersion>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>4.2.5.RELEASE</spring.version>
 	</properties>
 
 	<dependencyManagement>
 
 		<dependencies>
+
+			<!-- spring -->
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-webmvc</artifactId>
@@ -134,6 +139,12 @@
 				<groupId>org.xerial</groupId>
 				<artifactId>sqlite-jdbc</artifactId>
 				<version>3.8.11.2</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.h2database</groupId>
+				<artifactId>h2</artifactId>
+				<version>1.4.192</version>
 			</dependency>
 
 			<dependency>
@@ -251,29 +262,22 @@
 				<version>1.8.7</version>
 			</dependency>
 
-			<!-- other -->
+			<!-- quartz -->
 			<dependency>
-				<groupId>org.javassist</groupId>
-				<artifactId>javassist</artifactId>
-				<version>3.20.0-GA</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.jboss.netty</groupId>
-				<artifactId>netty</artifactId>
-				<version>3.2.10.Final</version>
-			</dependency>
-
-			<dependency>
-				<groupId>com.netflix.curator</groupId>
-				<artifactId>curator-framework</artifactId>
-				<version>1.3.3</version>
-			</dependency>
-
-			<dependency>
-				<groupId>aopalliance</groupId>
-				<artifactId>aopalliance</artifactId>
-				<version>1.0</version>
+				<groupId>org.quartz-scheduler</groupId>
+				<artifactId>quartz</artifactId>
+				<version>2.2.1</version>
+				<exclusions>
+					<exclusion>
+						<groupId>c3p0</groupId>
+						<artifactId>c3p0</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-api</artifactId>
+					</exclusion>
+				</exclusions>
+				<optional>true</optional>
 			</dependency>
 
 			<!-- apache shiro -->
@@ -288,20 +292,6 @@
 				<artifactId>shiro-ehcache</artifactId>
 				<version>1.2.4</version>
 			</dependency>
-
-			<!-- cxf -->
-			<dependency>
-				<groupId>org.apache.cxf</groupId>
-				<artifactId>cxf-rt-frontend-jaxws</artifactId>
-				<version>3.1.3</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.apache.cxf</groupId>
-				<artifactId>cxf-rt-frontend-jaxrs</artifactId>
-				<version>3.1.3</version>
-			</dependency>
-			<!-- apache utils end -->
 
 			<!-- sitemesh -->
 			<dependency>
@@ -367,7 +357,36 @@
 				<version>1.7.21</version>
 			</dependency>
 
-			<!-- jackson-jaxrs -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.7.21</version>
+			</dependency>
+
+			<!-- other -->
+			<dependency>
+				<groupId>org.javassist</groupId>
+				<artifactId>javassist</artifactId>
+				<version>3.20.0-GA</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.netty</groupId>
+				<artifactId>netty</artifactId>
+				<version>3.2.10.Final</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.netflix.curator</groupId>
+				<artifactId>curator-framework</artifactId>
+				<version>1.3.3</version>
+			</dependency>
+
+			<dependency>
+				<groupId>aopalliance</groupId>
+				<artifactId>aopalliance</artifactId>
+				<version>1.0</version>
+			</dependency>
 
 			<dependency>
 				<groupId>com.sun.xml.bind</groupId>

@@ -12,12 +12,6 @@
 
 	<packaging>war</packaging>
 
-	<!-- 公用属性声明 -->
-	<properties>
-		<project.build.jdkVersion>1.7</project.build.jdkVersion>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
-
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
