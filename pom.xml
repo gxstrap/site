@@ -14,7 +14,7 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>logs</module>
+		<module>log-console</module>
 		<module>server</module>
 		<module>server-api</module>
 		<module>web</module>
