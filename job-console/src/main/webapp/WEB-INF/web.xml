@@ -54,7 +54,7 @@
 	
 	<servlet>
 		<servlet-name>initializeServlet</servlet-name>
-		<servlet-class>com.job.biz.initialize.InitializeServlet</servlet-class>
+		<servlet-class>com.rpc.biz.initialize.InitializeServlet</servlet-class>
 		<load-on-startup>2</load-on-startup>
 	</servlet>
 

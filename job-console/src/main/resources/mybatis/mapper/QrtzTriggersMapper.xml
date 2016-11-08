@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.job.biz.mapper.QrtzTriggersMapper">
+<mapper namespace="com.rpc.biz.mapper.QrtzTriggersMapper">
 
-	<resultMap id="baseResultMap" type="com.job.biz.model.QrtzTriggers">
+	<resultMap id="baseResultMap" type="com.rpc.biz.model.QrtzTriggers">
 		<result column="SCHED_NAME" property="schedName" />
 		<result column="TRIGGER_NAME" property="triggerName" />
 		<result column="TRIGGER_GROUP" property="triggerGroup" />
@@ -22,7 +22,7 @@
 		<result column="JOB_DATA" property="jobData" />
 	</resultMap>
 
-	<insert id="insert" parameterType="com.job.biz.model.QrtzTriggers">
+	<insert id="insert" parameterType="com.rpc.biz.model.QrtzTriggers">
 		INSERT INTO QRTZ_TRIGGERS(SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP, JOB_NAME, JOB_GROUP, DESCRIPTION, NEXT_FIRE_TIME, PREV_FIRE_TIME, PRIORITY, TRIGGER_STATE, TRIGGER_TYPE, START_TIME, END_TIME, CALENDAR_NAME,
 		MISFIRE_INSTR, JOB_DATA)
 		VALUES(#{schedName},#{triggerName},#{triggerGroup},#{jobName},#{jobGroup},#{description},#{nextFireTime},#{prevFireTime},#{priority},#{triggerState},#{triggerType},#{startTime},#{endTime},#{calendarName},#{misfireInstr},#{jobData})
@@ -47,7 +47,7 @@
 	    ]]>
 	</sql>
 
-	<select id="findAll" parameterType="com.job.biz.model.QrtzTriggers" resultMap="baseResultMap">
+	<select id="findAll" parameterType="com.rpc.biz.model.QrtzTriggers" resultMap="baseResultMap">
 		<include refid="find_xxx" />
 		<include refid="from_xxx" />
 		<include refid="where_xxx" />
