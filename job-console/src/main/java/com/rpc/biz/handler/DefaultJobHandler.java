@@ -1,6 +1,6 @@
-package com.rpc.biz.service;
+package com.rpc.biz.handler;
 
-public abstract class DefaultService {
+public abstract class DefaultJobHandler {
 
     public abstract String getClassName();
 

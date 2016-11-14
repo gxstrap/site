@@ -22,9 +22,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.rpc.biz.handler.JobBuilderFactory;
 import com.rpc.biz.model.QrtzTriggers;
 import com.rpc.biz.model.Trigger;
-import com.rpc.biz.service.ServerBuilderContext;
 import com.rpc.quartz.service.SchedulerService;
 
 @Controller
@@ -50,7 +50,7 @@ public class JobProcessController {
         log.info("# 即将进入首页..");
         List<QrtzTriggers> results = this.schedulerService.getQrtzTriggers(null, null);
         model.addAttribute("list", results);
-        model.addAttribute("servers", ServerBuilderContext.servers.keySet());
+        model.addAttribute("servers", JobBuilderFactory.servers.keySet());
         return "index";
     }
 
@@ -92,7 +92,7 @@ public class JobProcessController {
      */
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String toAdd(Model model) {
-        model.addAttribute("servers", ServerBuilderContext.servers.keySet());
+        model.addAttribute("servers", JobBuilderFactory.servers.keySet());
         log.info("# 进入新增页面");
         return "add";
     }
@@ -105,7 +105,7 @@ public class JobProcessController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String add(Model model, @ModelAttribute Trigger trigger) {
         try {
-            model.addAttribute("servers", ServerBuilderContext.servers.keySet());
+            model.addAttribute("servers", JobBuilderFactory.servers.keySet());
             // 添加任务调试
             log.info("# triggerType={}", trigger.getTriggerType());
             switch (trigger.getTriggerType()) {

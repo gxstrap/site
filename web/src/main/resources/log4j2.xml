@@ -42,7 +42,7 @@
 
 	<loggers>
 		<!-- 3rdparty Loggers -->
-		<logger name="cn.springmvc" level="debug" />
+		<logger name="com.rpc" level="debug" />
 		<logger name="org.activiti" level="debug" />
 		<logger name="net.spy.memcached" level="debug" />
 		<logger name="org.springframework" level="info" />

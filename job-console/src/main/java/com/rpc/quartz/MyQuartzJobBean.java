@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
-import com.rpc.biz.service.ServerBuilderContext;
+import com.rpc.biz.handler.JobBuilderFactory;
 
 @PersistJobDataAfterExecution
 @DisallowConcurrentExecution // 不允许并发执行
@@ -24,9 +24,9 @@ public class MyQuartzJobBean extends QuartzJobBean {
         Trigger trigger = jobexecutioncontext.getTrigger();
         // String triggerName = trigger.getKey().getName();
         String group = trigger.getKey().getGroup();
-        ServerBuilderContext serverBuilderContext = getApplicationContext(jobexecutioncontext).getBean("serverBuilderContext", ServerBuilderContext.class);
+        JobBuilderFactory context = getApplicationContext(jobexecutioncontext).getBean("jobBuilderFactory", JobBuilderFactory.class);
         try {
-            serverBuilderContext.execute(group);
+            context.execute(group);
         } catch (Exception e) {
             log.info("#MyQuartzJobBean.executeInternal , group={} error message=[{}]", group, e.getLocalizedMessage());
         }

@@ -8,7 +8,7 @@
 		<!-- 日志备份目录 -->
 		<!-- <property name="BACKUP_HOME">{HOME:-./logs}</property> -->
 		<property name="BACKUP_HOME">./logs</property>
-		<property name="PROJECT_NAME">rpc-server</property>
+		<property name="PROJECT_NAME">server</property>
 	</properties>
 
 	<appenders>
@@ -42,11 +42,11 @@
 
 	<loggers>
 		<!-- 3rdparty Loggers -->
-		<logger name="cn.springmvc" level="debug" />
-		<logger name="org.activiti" level="debug" />
+		<logger name="com.rpc" level="debug" />
 		<logger name="net.spy.memcached" level="debug" />
 		<logger name="org.springframework" level="info" />
-		<logger name="org.hibernate" level="info" />
+		<logger name="com.alibaba" level="info" />
+		<logger name="org.jboss" level="info" />
 		<logger name="org.apache" level="info" />
 		<logger name="org.quartz" level="info" />
 		<logger name="com.google.code.yanf4j" level="info" />

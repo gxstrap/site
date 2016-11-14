@@ -19,7 +19,8 @@
 		<module>server-api</module>
 		<module>web</module>
 		<module>job-console</module>
-	</modules>
+    <module>job</module>
+  </modules>
 
 	<properties>
 		<project.build.jdkVersion>1.7</project.build.jdkVersion>
