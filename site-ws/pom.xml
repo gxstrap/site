@@ -16,7 +16,7 @@
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
+			<artifactId>spring-core</artifactId>
 		</dependency>
 
 		<dependency>
@@ -105,7 +105,7 @@
 			<groupId>org.xerial</groupId>
 			<artifactId>sqlite-jdbc</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
