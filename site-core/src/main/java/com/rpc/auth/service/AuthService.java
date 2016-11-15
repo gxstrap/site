@@ -132,4 +132,12 @@ public interface AuthService {
 
     public void saveUser(List<User> list);
 
+    /**
+     * 
+     * @Description 分布查询角色
+     * @author 王鑫
+     * @return 角色
+     */
+    public Page<Role> paginateRole(Page<Role> page);
+
 }

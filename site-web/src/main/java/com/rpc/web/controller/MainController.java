@@ -20,17 +20,17 @@ public class MainController {
     @RequestMapping(value = "/error", method = { RequestMethod.GET, RequestMethod.POST })
     public String error(@RequestParam(value = "status", required = false) String status, @RequestParam(value = "msg", required = false) String message) {
         log.error("## 系统错误：status={} , errorMessage={}", status, message);
-        return "pages/error";
+        return "common/error";
     }
 
     @RequestMapping(value = "/403", method = RequestMethod.GET)
     public String error403() {
-        return "pages/error";
+        return "common/403";
     }
 
     @RequestMapping(value = "/404", method = RequestMethod.GET)
     public String error404() {
-        return "pages/error";
+        return "common/404";
     }
 
 }

@@ -5,7 +5,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="zh-CN">
 <head>
-<title>菜单管理</title>
+<title>角色管理</title>
 <script type="text/javascript">
   
 </script>
@@ -27,21 +27,21 @@
 			<table class="table table-condensed">
 				<thead>
 					<tr>
-						<th>菜单名称</th>
-						<th>编码</th>
-						<th>URL</th>
-						<th>等级</th>
+						<th>角色名称</th>
+						<th>角色编辑</th>
+						<th>备注</th>
+						<th>创建时间</th>
 						<th>操作</th>
 					</tr>
 				</thead>
 				<tbody id="userBody">
-					<c:forEach var="m" items="${pers }">
+					<c:forEach var="r" items="${page.resultList }">
 						<tr>
-							<td>${m.menuName }</td>
-							<td>${m.loginName }</td>
-							<td>${m.userName }</td>
-							<td><fmt:formatDate value="${m.createTime }" pattern="yyyy-MM-dd HH:mm" /></td>
-							<td><a href="${ctx }/user/edit?userId=${u.id}">修改</a></td>
+							<td>${r.roleName }</td>
+							<td>${r.roleCode }</td>
+							<td>${r.remark }</td>
+							<td><fmt:formatDate value="${r.createTime }" pattern="yyyy-MM-dd HH:mm" /></td>
+							<td><a href="${ctx }/user/edit?userId=${r.id}">修改</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

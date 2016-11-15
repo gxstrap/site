@@ -30,12 +30,12 @@ public class UserController {
     @Autowired
     private AuthService authService;
 
-    @RequestMapping(value = "list", method = RequestMethod.GET)
+    @RequestMapping(value = "manager", method = RequestMethod.GET)
     public String list(Model model) {
         Page<User> page = new Page<User>();
         page = authService.paginateUser(page);
         model.addAttribute("page", page);
-        return "auth/user/user_list";
+        return "auth/user/user_manager";
     }
 
     @RequestMapping(value = "add", method = RequestMethod.GET)

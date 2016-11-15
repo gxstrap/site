@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.rpc.auth.model.Role;
+import com.rpc.framework.base.Page;
 import com.rpc.framework.mybatis.mapper.BaseMapper;
 
 /**
@@ -31,4 +32,11 @@ public interface RoleMapper extends BaseMapper<String, Role> {
      */
     public Role findRoleByCode(String code);
 
+    /**
+     * @Description 分页查询角色
+     * @author 王鑫
+     * @param page 分页对象
+     * @return 角色对象集合
+     */
+    public List<Role> paginateRolePage(Page<Role> page);
 }

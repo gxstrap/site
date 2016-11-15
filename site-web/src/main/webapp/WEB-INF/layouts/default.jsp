@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <link rel="icon" href="${ctx}/static/images/favicon.ico">
-<title>后台-<sitemesh:write property='title' /></title>
+<title><sitemesh:write property='title' /></title>
 <link href="${ctx}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
 <link href="${ctx}/static/bootstrap/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" />
 <link href="${ctx}/static/bootstrap/css/bootstrap-submenu.css" type="text/css" rel="stylesheet" />
@@ -50,7 +50,7 @@
 									<li class="dropdown-submenu"><a tabindex="0">${two.menuName }</a>
 										<ul class="dropdown-menu">
 											<c:forEach items="${two.children }" var="three">
-												<li><a tabindex="0" href="${three.url }">${three.menuName }</a></li>
+												<li><a tabindex="0" href="${ctx}/${three.url }">${three.menuName }</a></li>
 											</c:forEach>
 										</ul></li>
 								</c:forEach>

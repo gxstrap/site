@@ -6,7 +6,12 @@
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd  
     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-	<context:component-scan base-package="com.rpc.*" />
+	<!-- 自动扫描且只扫描@Service,@Component,@Repository -->
+	<context:component-scan base-package="com.rpc" use-default-filters="true">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Component" />
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+	</context:component-scan>
 
 	<bean id="applicationContextUtil" class="com.rpc.util.ApplicationContextUtil" />
 

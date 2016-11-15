@@ -6,14 +6,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.rpc.auth.model.Permission;
 import com.rpc.auth.model.Role;
 import com.rpc.auth.model.User;
-import com.rpc.auth.service.AuthService;
 import com.rpc.common.constants.Constants;
 import com.rpc.framework.key.GeneratePrimaryKey;
 
@@ -23,14 +21,11 @@ import com.rpc.framework.key.GeneratePrimaryKey;
  *         production为生产环境，development为测试环境
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath*:spring/applicationContext-dao-datasource.xml", "classpath*:spring/applicationContext-dao-transaction.xml", "classpath*:spring/applicationContext-dubbo.xml",
-    "classpath*:spring/applicationContext-mybatis.xml", "classpath*:spring/applicationContext.xml", "classpath*:spring/service/applicationContext-*.xml" })
-@ActiveProfiles("development")
+@ContextConfiguration(locations = { "classpath*:spring/applicationContext-dao-*.xml", "classpath*:spring/applicationContext-dubbo.xml", "classpath*:spring/applicationContext-mybatis.xml", "classpath*:spring/applicationContext.xml", "classpath*:spring/service/applicationContext-*.xml" })
 public class InitServiceTest {
 
     @Autowired
     private AuthService authService;
-    
 
     /**
      * 创建角色

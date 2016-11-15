@@ -22,7 +22,7 @@ public class MenuController {
     public String manager(Model model) {
         List<Permission> pers = authService.getPermissions();
         model.addAttribute("pers", pers);
-        return "auth/menu/menu_list";
+        return "auth/menu/menu_manager";
     }
 
 }

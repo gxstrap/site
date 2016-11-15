@@ -5,7 +5,7 @@ import java.util.Map;
 
 /**
  * @ClassName IBaseMapper
- * @author <font color="red"><b>Vincent.wang</b></font>
+ * @author <font color="red"><b>王鑫</b></font>
  */
 public interface BaseMapper<S, T> {
 
@@ -18,7 +18,7 @@ public interface BaseMapper<S, T> {
 
     /**
      * @Title 根据对象插入数据
-     * @author <font color="green"><b>Vincent.wang</b></font>
+     * @author <font color="green"><b>王鑫</b></font>
      * @param t
      * @throws Exception
      * @return
@@ -27,7 +27,7 @@ public interface BaseMapper<S, T> {
 
     /**
      * @Title 根据Map删除
-     * @author <font color="green"><b>Vincent.wang</b></font>
+     * @author <font color="green"><b>王鑫</b></font>
      * @param map
      * @throws Exception
      * @return
@@ -36,7 +36,7 @@ public interface BaseMapper<S, T> {
 
     /**
      * @Title 根据用户修改
-     * @author <font color="green"><b>Vincent.wang</b></font>
+     * @author <font color="green"><b>王鑫</b></font>
      * @param t
      * @throws Exception
      * @return
@@ -45,7 +45,7 @@ public interface BaseMapper<S, T> {
 
     /**
      * @Title 根据Map查找单个
-     * @author <font color="green"><b>Vincent.wang</b></font>
+     * @author <font color="green"><b>王鑫</b></font>
      * @param map
      * @return Map
      * @throws Exception
@@ -54,7 +54,7 @@ public interface BaseMapper<S, T> {
 
     /**
      * @Title 根据Map查找多个
-     * @author <font color="green"><b>Vincent.wang</b></font>
+     * @author <font color="green"><b>王鑫</b></font>
      * @param map
      * @return List<Map>
      * @throws Exception

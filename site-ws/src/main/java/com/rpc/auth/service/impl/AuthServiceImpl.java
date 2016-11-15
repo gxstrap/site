@@ -274,4 +274,11 @@ public class AuthServiceImpl implements AuthService {
         }
     }
 
+    @Override
+    public Page<Role> paginateRole(Page<Role> page) {
+        List<Role> roles = roleMapper.paginateRolePage(page);
+        page.setResultList(roles);
+        return page;
+    }
+
 }

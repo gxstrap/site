@@ -60,7 +60,7 @@
 		WHERE ROLE_CODE=#{roleCode}
 	</select>
 
-	<select id="findListPage">
+	<select id="paginateRolePage" resultMap="roleMap">
 		<include refid="find_xxx" />
 		<include refid="from_xxx" />
 		<include refid="where_xxx" />

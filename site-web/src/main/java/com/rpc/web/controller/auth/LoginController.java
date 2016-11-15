@@ -65,7 +65,7 @@ public class LoginController {
             subject.logout();
             return "login";
         }
-
+        log.info("#恭喜[{}]登录成功！",userCommand.getUsername());
         return "redirect:/index";
     }
 
