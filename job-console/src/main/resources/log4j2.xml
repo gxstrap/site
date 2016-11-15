@@ -18,7 +18,7 @@
 		</Console>
 
 		<!-- 应用日志 -->
-		<RollingRandomAccessFile name="RollingLog" fileName="${BACKUP_HOME}/Rolling.log" filePattern="${BACKUP_HOME}/Rolling.%d{yyyy-MM-dd_HH}.log">
+		<RollingRandomAccessFile name="BusinessLog" fileName="${BACKUP_HOME}/Business.log" filePattern="${BACKUP_HOME}/Business.%d{yyyy-MM-dd_HH}.log">
 			<PatternLayout pattern="[${PROJECT_NAME}]%date{yy/MM/dd HH:mm:ss.SSS} %-5level [%thread] %logger{15}(%line) - %msg%n" />
 			<Policies>
 				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
@@ -30,8 +30,9 @@
 		<!-- 3rdparty Loggers -->
 		<logger name="com.rpc" level="debug" />
 		<logger name="org.springframework" level="info" />
-		<logger name="org.hibernate" level="info" />
 		<logger name="org.apache" level="info" />
+		<logger name="com.alibaba" level="info" />
+		<logger name="com.netflix" level="info" />
 		<logger name="org.mybatis.spring.SqlSessionUtils" level="info" />
 		<logger name="org.mybatis.spring.transaction.SpringManagedTransaction" level="info" />
 		<logger name="org.quartz" level="info" />
@@ -47,7 +48,7 @@
 		<!-- Root Logger -->
 		<root level="debug">
 			<appender-ref ref="Console" />
-			<appender-ref ref="RollingLog" />
+			<appender-ref ref="BusinessLog" />
 		</root>
 
 	</loggers>

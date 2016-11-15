@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
-@Service("serverBuilderContext")
+@Service("jobBuilderFactory")
 public class JobBuilderFactory {
 
     private static Logger log = LoggerFactory.getLogger(JobBuilderFactory.class);

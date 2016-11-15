@@ -19,13 +19,6 @@
 		</param-value>
 	</context-param>
 
-	<context-param>
-		<!-- development:以开发环境启动，production：以生产环境启动 -->
-		<param-name>spring.profiles.default</param-name>
-		<param-value>development</param-value>
-		<!-- <param-value>production</param-value> -->
-	</context-param>
-
 	<filter>
 		<filter-name>characterEncodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
