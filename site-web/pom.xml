@@ -3,12 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.rpc</groupId>
-		<artifactId>rpc</artifactId>
+		<groupId>com.site</groupId>
+		<artifactId>site</artifactId>
 		<version>1.0</version>
 	</parent>
 
-	<artifactId>web</artifactId>
+	<artifactId>site-web</artifactId>
 	<packaging>war</packaging>
 
 	<dependencies>
@@ -130,8 +130,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.rpc</groupId>
-			<artifactId>server-api</artifactId>
+			<groupId>com.site</groupId>
+			<artifactId>site-core</artifactId>
 			<exclusions>
 				<exclusion>
 					<groupId>org.apache.logging.log4j</groupId>

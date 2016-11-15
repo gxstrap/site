@@ -2,14 +2,14 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.rpc</groupId>
-		<artifactId>rpc</artifactId>
+		<groupId>com.site</groupId>
+		<artifactId>site</artifactId>
 		<version>1.0</version>
 	</parent>
 
-	<artifactId>job-console</artifactId>
+	<artifactId>site-job</artifactId>
 	<packaging>war</packaging>
-	<name>job-console Maven Webapp</name>
+	<name>site-job Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 
 	<dependencies>
@@ -200,8 +200,14 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.rpc</groupId>
-			<artifactId>server-api</artifactId>
+			<groupId>com.site</groupId>
+			<artifactId>site-core</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-nosql</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!-- junit test -->

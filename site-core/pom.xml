@@ -3,20 +3,14 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.rpc</groupId>
-		<artifactId>rpc</artifactId>
+		<groupId>com.site</groupId>
+		<artifactId>site</artifactId>
 		<version>1.0</version>
 	</parent>
 
-	<artifactId>server-api</artifactId>
+	<artifactId>site-core</artifactId>
 
 	<packaging>jar</packaging>
-
-	<!-- 公用属性声明 -->
-	<properties>
-		<project.build.jdkVersion>1.7</project.build.jdkVersion>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
 
 	<dependencies>
 		<!-- httpclient -->

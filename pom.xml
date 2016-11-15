@@ -3,24 +3,23 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.rpc</groupId>
-	<artifactId>rpc</artifactId>
+	<groupId>com.site</groupId>
+	<artifactId>site</artifactId>
 
 	<version>1.0</version>
-	<name>Archetype - rpc</name>
+	<name>Archetype - site</name>
 	<url>http://maven.apache.org</url>
 
 
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>log-console</module>
-		<module>server</module>
-		<module>server-api</module>
-		<module>web</module>
-		<module>job-console</module>
-    <module>job</module>
-  </modules>
+		<module>site-core</module>
+		<module>site-job</module>
+		<module>site-logs</module>
+		<module>site-web</module>
+		<module>site-ws</module>
+	</modules>
 
 	<properties>
 		<project.build.jdkVersion>1.7</project.build.jdkVersion>
@@ -434,8 +433,8 @@
 			</dependency>
 
 			<dependency>
-				<groupId>com.rpc</groupId>
-				<artifactId>server-api</artifactId>
+				<groupId>com.site</groupId>
+				<artifactId>site-core</artifactId>
 				<version>1.0</version>
 			</dependency>
 

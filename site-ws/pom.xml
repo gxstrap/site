@@ -3,12 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.rpc</groupId>
-		<artifactId>rpc</artifactId>
+		<groupId>com.site</groupId>
+		<artifactId>site</artifactId>
 		<version>1.0</version>
 	</parent>
 
-	<artifactId>server</artifactId>
+	<artifactId>site-ws</artifactId>
 
 	<packaging>war</packaging>
 
@@ -215,8 +215,8 @@
 		<!-- End -->
 
 		<dependency>
-			<groupId>com.rpc</groupId>
-			<artifactId>server-api</artifactId>
+			<groupId>com.site</groupId>
+			<artifactId>site-core</artifactId>
 		</dependency>
 
 		<!-- test -->
