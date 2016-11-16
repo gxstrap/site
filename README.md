@@ -12,16 +12,16 @@
 + <b>site-job：</b><br/>
 <b>a.</b> WEB界面的定时任务系统；<br/>
 <b>b.</b> 集成了Dubbo的Consumer消费端；<br/>
-<b>c.</b> 包含SpringMVC、SpringJDBC、Mybatis、Quartz、Log4j2、H2内存数据库；
+<b>c.</b> 包含SpringMVC、SpringJDBC、Mybatis、Bootstrap3、Quartz、Log4j2、H2内存数据库；
 
 + <b>site-logs：</b><br/>
 <b>a.</b> MongoDB日志查询系统，site架构中，支持将日志写入MongoDB，site-logs则是查询分析MongoDB当中日志；<br/>
-<b>b.</b> 包含SpringMVC、Spring-data、Log4j2、MongoDB数据库；
+<b>b.</b> 包含SpringMVC、Spring-data、Bootstrap3、Log4j2、MongoDB数据库；
 
 + <b>site-web：</b><br/>
 <b>a.</b> 前置系统，即WEB项目；<br/>
 <b>b.</b> 集成了Dubbo的Consumer消费端；<br/>
-<b>c.</b> 包含SpringMVC、Apache Shiro、Sitemesh3、Log4j2；
+<b>c.</b> 包含SpringMVC、Apache Shiro、Bootstrap3、Sitemesh3、Log4j2；
 
 + <b>site-ws：</b><br/>
 <b>a.</b> 底层服务系统，即Dubbo的Provider提供端；<br/>
