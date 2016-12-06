@@ -33,7 +33,7 @@
 
 #### site示例启动
   
-<b>a.</b> 数据库选择，默认开启SQLite数据库，若改用Oracle或MySQL，可在site-ws工程的<font color="blue">datasource.properties</font>数据源配置文件当中设置；<br/>
+<b>a.</b> 数据库选择，默认开启SQLite数据库，若改用Oracle或MySQL，可在site-ws工程的<font color="blue">jdbc.properties</font>数据源配置文件当中设置；<br/>
 <b>b.</b> 本地架设一个zookeeper并启动好，修改好site-ws、site-web、site-job工程当中的<font color="blue">dubbo.properties</font>配置文件，将里面的zookeeper地址改为本地框架的ip与商品；<br/>
 <b>c.</b> 启动site-ws工程；<br/>
 <b>d.</b> 分别启动site-web、site-job两个工程，注意各启动的工程之间商品不要冲突；<br/>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.rpc.auth.mapper.UserMapper">
+<mapper namespace="com.site.auth.mapper.UserMapper">
 
-	<resultMap id="userMap" type="com.rpc.auth.model.User">
+	<resultMap id="userMap" type="com.site.auth.model.User">
 		<result column="ID" property="id" />
 		<result column="EMAIL" property="email" />
 		<result column="USER_NAME" property="userName" />
@@ -15,7 +15,7 @@
 		<result column="UPDATE_TIME" property="updateTime" />
 	</resultMap>
 
-	<insert id="insert" parameterType="com.rpc.auth.model.User">
+	<insert id="insert" parameterType="com.site.auth.model.User">
 		insert into t_auth_user(id , email , login_name , user_name ,pass_word , salt , is_del , create_time , update_time) values(#{id} , #{email} , #{loginName} ,#{userName} , #{password} , #{salt} ,#{isDel} ,
 		#{createTime} , #{updateTime})
 	</insert>
@@ -67,7 +67,7 @@
 		<include refid="from_xxx" />
 	</select>
 
-	<update id="update" parameterType="com.rpc.auth.model.User">
+	<update id="update" parameterType="com.site.auth.model.User">
 		UPDATE t_auth_user
 		<set>
 			<if test="email != null">

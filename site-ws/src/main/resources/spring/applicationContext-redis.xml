@@ -39,7 +39,7 @@
 	</bean>
 
 	<!-- Redis基类Dao -->
-	<bean id="redisBaseDao" class="com.rpc.framework.redis.dao.impl.RedisBaseDaoImpl">
+	<bean id="redisBaseDao" class="com.site.framework.redis.dao.impl.RedisBaseDaoImpl">
 		<property name="redisTemplate" ref="redisTemplate" />
 	</bean>
 

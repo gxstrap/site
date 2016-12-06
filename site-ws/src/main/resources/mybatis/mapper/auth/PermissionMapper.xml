@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.rpc.auth.mapper.PermissionMapper">
+<mapper namespace="com.site.auth.mapper.PermissionMapper">
 
-	<resultMap id="permissionMap" type="com.rpc.auth.model.Permission">
+	<resultMap id="permissionMap" type="com.site.auth.model.Permission">
 		<result property="id" column="ID" />
 		<result property="menuName" column="MENU_NAME" />
 		<result property="menuCode" column="MENU_CODE" />
@@ -17,7 +17,7 @@
 		<result property="updateTime" column="UPDATE_TIME" />
 	</resultMap>
 
-	<insert id="insert" parameterType="com.rpc.auth.model.Permission">
+	<insert id="insert" parameterType="com.site.auth.model.Permission">
 		insert into t_auth_permission(id , menu_name , menu_code , url, lev , sort , parent_id , is_del , create_time , update_time) values(#{id} , #{menuName} , #{menuCode} , #{url} , #{lev} , #{sort} , #{parentId},
 		#{isDel} , #{createTime} , #{updateTime} )
 	</insert>
@@ -78,7 +78,7 @@
 		<include refid="where_xxx" />
 	</select>
 
-	<update id="update" parameterType="com.rpc.auth.model.Permission">
+	<update id="update" parameterType="com.site.auth.model.Permission">
 		UPDATE t_auth_permission
 		<set>
 			<if test="menuName != null and menuName!=''">

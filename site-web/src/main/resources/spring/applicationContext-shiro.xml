@@ -5,7 +5,7 @@
 	<description>Shiro安全配置</description>
 
 	<!-- 項目自定义的Realm -->
-	<bean id="authorizingRealmImpl" class="com.rpc.security.AuthorizingRealmImpl" />
+	<bean id="authorizingRealmImpl" class="com.site.security.AuthorizingRealmImpl" />
 
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="realm" ref="authorizingRealmImpl" />

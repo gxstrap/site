@@ -2,5 +2,5 @@
 <sitemesh>
 	<mapping path="/login" exclude="true" />
 	<mapping path="/static/*" exclude="true" />
-	<mapping path="/*" decorator="/WEB-INF/layouts/default.jsp" />
+	<mapping path="/*" decorator="/WEB-INF/layouts/default.ftl" />
 </sitemesh>

@@ -14,12 +14,12 @@
 	<appenders>
 		<!-- 定义控制台输出 -->
 		<Console name="Console" target="SYSTEM_OUT" follow="true">
-			<PatternLayout pattern="%sn [${PROJECT_NAME}] %d{yy/MM/dd HH:mm:ss,SSS} %r [%-6p] [%t] %c{1.}.%M(%F:%L) - %m%n" />
+			<PatternLayout pattern="[${PROJECT_NAME}] %d{yy/MM/dd HH:mm:ss,SSS} %r [%-6p] [%t] %C.%M(%F:%L) - %m%n" />
 		</Console>
 
 		<!-- 应用日志 -->
-		<RollingRandomAccessFile name="RollingLog" fileName="${BACKUP_HOME}/Rolling.log" filePattern="${BACKUP_HOME}/Rolling.%d{yyyy-MM-dd-HH}.log">
-			<PatternLayout pattern="%sn [${PROJECT_NAME}] %d{yy/MM/dd HH:mm:ss,SSS} %r [%-6p] [%t] %c{1.}.%M(%F:%L) - %m%n" />
+		<RollingRandomAccessFile name="RollingLog" fileName="${BACKUP_HOME}/Rolling.log" filePattern="${BACKUP_HOME}/Rolling.%d{yyyy-MM-dd}.log">
+			<PatternLayout pattern="%sn [${PROJECT_NAME}] %d{yy/MM/dd HH:mm:ss,SSS} %r [%-6p] [%t] %C.%M(%F:%L) - %m%n" />
 			<Policies>
 				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
 			</Policies>
@@ -34,7 +34,7 @@
 
 	<loggers>
 		<!-- 3rdparty Loggers -->
-		<logger name="com.rpc" level="debug" />
+		<logger name="com.site" level="debug" />
 		<logger name="org.springframework" level="info" />
 		<logger name="com.alibaba" level="info" />
 		<logger name="com.netflix" level="info" />
@@ -52,8 +52,8 @@
 
 		<!-- Business logger -->
 		<!-- 日志单独输出，单独输出到Businesslog文件当中，也在其它日志文件当中体现 -->
-		<!-- 在类里面采用这种声明方式：private static final Logger log = LoggerFactory.getLogger("com.rpc.bizLog"); -->
-		<logger name="com.rpc.bizLog" level="info" additivity="false">
+		<!-- 在类里面采用这种声明方式：private static final Logger log = LoggerFactory.getLogger("com.site.bizLog"); -->
+		<logger name="com.site.bizLog" level="info" additivity="false">
 			<appender-ref ref="Console" />
 			<appender-ref ref="BusinessLog" />
 		</logger>

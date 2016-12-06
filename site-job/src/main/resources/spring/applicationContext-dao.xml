@@ -58,7 +58,7 @@
 
 	<!-- Mapper接口所在包名，Spring会自动查找其下的Mapper -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.rpc.biz.mapper" />
+		<property name="basePackage" value="com.site.biz.mapper" />
 		<property name="sqlSessionFactoryBeanName" value="sessionFactory" />
 	</bean>
 
@@ -81,9 +81,9 @@
 		</tx:attributes>
 	</tx:advice>
 
-	<!-- 配置那些类的方法进行事务管理，当前com.rpc.biz.service包中的类中所有方法需要，还需要参考tx:advice的设置 -->
+	<!-- 配置那些类的方法进行事务管理，当前com.site.biz.service包中的类中所有方法需要，还需要参考tx:advice的设置 -->
 	<aop:config proxy-target-class="true">
-		<aop:pointcut id="allManagerMethod" expression="execution(* com.rpc..*Service.*(..))" />
+		<aop:pointcut id="allManagerMethod" expression="execution(* com.site..*Service.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="allManagerMethod" order="0" />
 	</aop:config>
 

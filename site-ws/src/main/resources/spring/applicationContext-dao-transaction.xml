@@ -34,7 +34,7 @@
 
 	<!-- 事务AOP -->
 	<aop:config>
-		<aop:pointcut id="txPointCut" expression="execution(* com.rpc..*Service.*(..))" />
+		<aop:pointcut id="txPointCut" expression="execution(* com.site..*Service.*(..))" />
 		<aop:advisor order="2" pointcut-ref="txPointCut" advice-ref="txAdvice" />
 	</aop:config>
 
