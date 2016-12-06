@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
@@ -19,7 +19,6 @@
 			<a class="navbar-brand">后台管理系统</a>
 		</div>
 		<div class="collapse navbar-collapse">
-
 			<#if !permission_session?if_exists  || 0==permission_session?size>
 			<#list permission_session as one>
 					<ul class="nav navbar-nav">
@@ -47,12 +46,12 @@
 
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a tabindex="0" data-toggle="dropdown"><shiro:principal />个人中心 <span class="caret"></span> </a>
-
 					<ul class="dropdown-menu">
 						<li><a tabindex="0" href="${ctx }/user/updatepasswordPage">修改密码</a></li>
 						<li class="divider"></li>
 						<li><a tabindex="0" href="${ctx }/logout">退出</a></li>
-					</ul></li>
+					</ul>
+				</li>
 			</ul>
 		</div>
 	</nav>
@@ -68,10 +67,11 @@
 	<div id="footer">
 		<div class="container">
 			<p class="text-center text-muted credit">
-				Copyright &copy; 2008-2013 <a href="https://github.com/infowangxin/springmvc-dubbo">github.com</a>
+				Copyright &copy; 2016 <a href="https://github.com/infowangxin/springmvc-dubbo">github.com</a>
 			</p>
 		</div>
 	</div>
+	
 <script src="${ctx}/static/jquery/jquery-1.9.1.js?${version_js}" type="text/javascript"></script>
 <script src="${ctx}/static/bootstrap/js/bootstrap.min.js?${version_js}" type="text/javascript"></script>
 <script src="${ctx}/static/bootstrap/js/bootstrap-submenu.js?${version_js}" type="text/javascript"></script>

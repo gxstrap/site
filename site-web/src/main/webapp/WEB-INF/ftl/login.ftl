@@ -1,18 +1,14 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<c:set var="ctx" value="${pageContext.request.contextPath}" />
-<!DOCTYPE html>
-<html lang="zh-CN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="">
+<link rel="icon" href="${ctx}/static/images/favicon.ico">
 
 <title>欢迎登录</title>
 
-<link href="${ctx}/static/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+<link href="${ctx}/static/bootstrap/css/bootstrap.min.css?${version_css}" type="text/css" rel="stylesheet" />
 <style type="text/css">
 body {
 	padding-top: 40px;
@@ -51,15 +47,15 @@ body {
 </head>
 <body>
 	<div class="container">
-		<form:form action="${ctx }/login" cssClass="form-signin" modelAttribute="userCommand" method="POST">
+		<form action="${ctx }/login" class="form-signin" id="userCommand" method="POST">
 			<h3 class="form-signin-heading">登录后台管理系统</h3>
 			<input type="text" class="form-control input-block-level" id="username" name="username" placeholder="用户" value="wangxin">
 			<input type="password" class="form-control input-block-level" id="password" name="password" placeholder="密码" value="123456">
-			<form:errors cssClass="login-error"></form:errors>
+			<span cssClass="login-error"></span>
 			<button class="btn btn-large btn-primary" type="submit">登录</button>
 			</br>
 			</br>
-		</form:form>
+		</form>
 	</div>
 </body>
 </html>
