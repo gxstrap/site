@@ -18,7 +18,7 @@
 	<dubbo:protocol name="dubbo" port="#{p_dubbo['dubbo.protocol.port']}" />
 
 	<!-- 使用zookeeper注册中心进行注册 -->
-	<dubbo:registry protocol="zookeeper" address="#{p_dubbo['dubbo.registry.address']}" client="curator" file="${user.home}/output/dubbo.cache" />
+	<dubbo:registry protocol="zookeeper" address="#{p_dubbo['dubbo.registry.address']}" client="curator" file="${user.home}/output/site-dubbo.cache" />
 
 	<!-- provider全局配置 -->
 	<dubbo:provider retries="#{p_dubbo['dubbo.provider.retries']}" timeout="#{p_dubbo['dubbo.provider.timeout']}" loadbalance="#{p_dubbo['dubbo.provider.loadbalance']}" />

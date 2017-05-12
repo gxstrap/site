@@ -15,7 +15,7 @@
 	<dubbo:application name="#{p_dubbo['dubbo.application']}" />
 
 	<!-- 使用zookeeper注册中心进行注册 -->
-	<dubbo:registry protocol="zookeeper" address="#{p_dubbo['dubbo.registry.address']}" client="curator" file="#{p_dubbo['user.home']}/output/dubbo.cache" />
+	<dubbo:registry protocol="zookeeper" address="#{p_dubbo['dubbo.registry.address']}" client="curator" file="${user.home}/output/site-dubbo.cache" />
 
 	<!-- 关闭所有服务的启动时检查(用于开发环境，在测试、生产环境注释掉) -->
 	<dubbo:consumer check="false" />
