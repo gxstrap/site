@@ -3,13 +3,11 @@ package com.site.framework.datasource;
 /**
  * 
  * 数据源枚举常量类
- * 
- * @Copyright 北京瑞友科技股份有限公司上海分公司-2014
  */
 public enum DataSourceEnum {
 
-    /** 主库数据源 */
-    MASTER("master", "主库数据源");
+        /** 主库数据源 */
+        MASTER("master", "主库数据源"), SLAVE("slave", "从库数据源"),;
 
     private DataSourceEnum(String key, String description) {
         this.key = key;

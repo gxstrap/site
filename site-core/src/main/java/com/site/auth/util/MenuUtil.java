@@ -1,14 +1,11 @@
 package com.site.auth.util;
 
 import java.io.Serializable;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import org.apache.commons.beanutils.PropertyUtils;
 
 import com.site.auth.dto.PermissionDto;
 import com.site.auth.model.Permission;
@@ -35,26 +32,21 @@ public class MenuUtil implements Serializable {
             Map<String, PermissionDto> one = new LinkedHashMap<String, PermissionDto>();
             for (Permission per : permissions) {
                 if (per != null && per.getLev() != null && per.getLev() == 1) {
-                    pvo = new PermissionDto();
-                    PropertyUtils.copyProperties(pvo, per);
-                    one.put(per.getId(), pvo);
+                    one.put(per.getId(), toDto(per));
                 }
             }
             // 二级菜单
             Map<String, PermissionDto> two = new LinkedHashMap<String, PermissionDto>();
             for (Permission per : permissions) {
                 if (per != null && per.getLev() != null && per.getLev() == 2) {
-                    pvo = new PermissionDto();
-                    PropertyUtils.copyProperties(pvo, per);
-                    two.put(per.getId(), pvo);
+                    two.put(per.getId(), toDto(per));
                 }
             }
 
             // 三级菜单绑到二级菜单上
             for (Permission p : permissions) {
                 if (p != null && p.getLev() != null && p.getLev() == 3 && two.containsKey(p.getParentId())) {
-                    pvo = new PermissionDto();
-                    PropertyUtils.copyProperties(pvo, p);
+                    pvo = toDto(p);
 
                     dto = two.get(p.getParentId());
                     dto.getChildren().add(pvo);
@@ -72,10 +64,26 @@ public class MenuUtil implements Serializable {
                 }
             }
             pers.addAll(one.values());
-        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return pers;
+    }
+    
+    private static PermissionDto toDto(Permission per){
+        PermissionDto dto = new PermissionDto();
+        dto.setId(per.getId());
+        dto.setMenuCode(per.getMenuCode());
+        dto.setMenuName(per.getMenuName());
+        dto.setBusinessSystem(per.getBusinessSystem());
+        dto.setParentId(per.getParentId());
+        dto.setUrl(per.getUrl());
+        dto.setLev(per.getLev());
+        dto.setSort(per.getSort());
+        dto.setRemark(per.getRemark());
+        dto.setCreateTime(per.getCreateTime());
+        dto.setUpdateTime(per.getUpdateTime());
+        return dto;
     }
 
 }
