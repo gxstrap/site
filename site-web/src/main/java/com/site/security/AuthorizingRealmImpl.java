@@ -25,14 +25,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.site.auth.dto.PermissionDto;
-import com.site.auth.model.Permission;
-import com.site.auth.model.Role;
-import com.site.auth.model.User;
-import com.site.auth.service.AuthService;
-import com.site.auth.util.MenuUtil;
 import com.site.common.constants.Constants;
 import com.site.common.exception.BusinessException;
+import com.site.entity.auth.Permission;
+import com.site.entity.auth.Role;
+import com.site.entity.auth.User;
+import com.site.entity.auth.dto.PermissionDto;
+import com.site.entity.auth.util.MenuUtil;
+import com.site.service.auth.AuthService;
 import com.site.util.salt.Encodes;
 
 /**

@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.alibaba.fastjson.JSON;
-import com.site.auth.dto.UserDto;
-import com.site.auth.model.User;
 import com.site.common.WebUtil;
+import com.site.entity.auth.User;
+import com.site.entity.auth.dto.UserDto;
 import com.site.web.validator.UserValidator;
 
 @Controller

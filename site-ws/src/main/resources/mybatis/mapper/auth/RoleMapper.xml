@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.site.auth.mapper.RoleMapper">
+<mapper namespace="com.site.mapper.auth.RoleMapper">
 
-	<resultMap id="roleMap" type="com.site.auth.model.Role">
+	<resultMap id="roleMap" type="com.site.entity.auth.Role">
 		<result property="id" column="ID" />
 		<result property="roleName" column="ROLE_NAME" />
 		<result property="roleCode" column="ROLE_CODE" />
@@ -14,7 +14,7 @@
 		<result property="updateTime" column="UPDATE_TIME" />
 	</resultMap>
 
-	<insert id="insert" parameterType="com.site.auth.model.Role">
+	<insert id="insert" parameterType="com.site.entity.auth.Role">
 		 <![CDATA[ insert into t_auth_role(id , role_name, role_code , parent_id , remark , is_del , create_time , update_time) values(#{id} , #{roleName} , #{roleCode} , #{parentId} , #{remark} , #{isDel} , #{createTime} , #{updateTime}) ]]>
 	</insert>
 
@@ -66,7 +66,7 @@
 		<include refid="where_xxx" />
 	</select>
 
-	<update id="update" parameterType="com.site.auth.model.Role">
+	<update id="update" parameterType="com.site.entity.auth.Role">
 		UPDATE t_auth_role
 		<set>
 			<if test="roleName != null and roleName!=''">

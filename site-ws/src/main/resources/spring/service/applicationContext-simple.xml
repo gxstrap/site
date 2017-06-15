@@ -9,6 +9,7 @@
    	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
 	<!-- 定时任务示例service -->
-	<dubbo:service interface="com.site.simple.service.SimpleJobService" ref="simpleJobService" />
+	<dubbo:service interface="com.site.service.simple.SimpleJobService" ref="simpleJobService" />
+	<dubbo:service interface="com.site.service.simple.SimpleService" ref="simpleService" />
 
 </beans>

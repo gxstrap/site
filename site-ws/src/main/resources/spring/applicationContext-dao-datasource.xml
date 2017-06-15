@@ -54,7 +54,7 @@
 	</bean>
 
 	<!-- 总数据源 -->
-	<bean id="dataSource" class="com.site.framework.datasource.DynamicDataSource">
+	<bean id="dataSource" class="com.site.common.framework.datasource.DynamicDataSource">
 		<property name="targetDataSources">
 			<map key-type="java.lang.String">
 				<entry key="master" value-ref="masterDataSource" />
@@ -65,7 +65,7 @@
 	</bean>
 
 	<!-- 数据源Aspect -->
-	<bean id="dataSourceAspect" class="com.site.framework.datasource.DataSourceAspect" />
+	<bean id="dataSourceAspect" class="com.site.common.framework.datasource.DataSourceAspect" />
 
 	<!-- 数据源AOP -->
 	<aop:config>

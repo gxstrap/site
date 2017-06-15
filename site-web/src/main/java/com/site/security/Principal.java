@@ -3,8 +3,8 @@ package com.site.security;
 import java.io.Serializable;
 import java.util.List;
 
-import com.site.auth.model.Role;
-import com.site.auth.model.User;
+import com.site.entity.auth.Role;
+import com.site.entity.auth.User;
 
 /**
  * @author Vincent.wang

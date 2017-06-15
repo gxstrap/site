@@ -6,10 +6,10 @@ import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.site.auth.model.Role;
-import com.site.auth.model.User;
 import com.site.common.constants.Constants;
 import com.site.common.exception.BusinessException;
+import com.site.entity.auth.Role;
+import com.site.entity.auth.User;
 import com.site.security.Principal;
 
 /**

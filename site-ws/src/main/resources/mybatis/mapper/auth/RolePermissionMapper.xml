@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.site.auth.mapper.RolePermissionMapper">
+<mapper namespace="com.site.mapper.auth.RolePermissionMapper">
 
-	<resultMap id="rolePermissionMap" type="com.site.auth.model.RolePermission">
+	<resultMap id="rolePermissionMap" type="com.site.entity.auth.RolePermission">
 		<result property="id" column="id" />
 		<result property="roleId" column="ROLE_ID" />
 		<result property="permissionId" column="PERMISSION_ID" />
@@ -12,7 +12,7 @@
 		<result property="updateTime" column="UPDATE_TIME" />
 	</resultMap>
 
-	<insert id="insert" parameterType="com.site.auth.model.RolePermission">
+	<insert id="insert" parameterType="com.site.entity.auth.RolePermission">
 		insert into t_auth_role_permission(id, role_id , permission_id , is_del , create_time , update_time) values(#{id},#{roleId},#{permissionId}, #{isDel} , #{createTime} , #{updateTime})
 	</insert>
 
@@ -40,7 +40,7 @@
 		WHERE ID=#{id}
 	</select>
 
-	<select id="findRolePermission" parameterType="com.site.auth.model.RolePermission" resultMap="rolePermissionMap">
+	<select id="findRolePermission" parameterType="com.site.entity.auth.RolePermission" resultMap="rolePermissionMap">
 		<include refid="find_xxx" />
 		<include refid="from_xxx" />
 		WHERE ROLE_ID=#{roleId} and PERMISSION_ID=#{permissionId}
@@ -52,7 +52,7 @@
 		<include refid="where_xxx" />
 	</select>
 
-	<update id="update" parameterType="com.site.auth.model.RolePermission">
+	<update id="update" parameterType="com.site.entity.auth.RolePermission">
 		UPDATE t_auth_role_permission
 		<set>
 			<if test="roleId != null">

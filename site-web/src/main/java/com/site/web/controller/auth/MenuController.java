@@ -8,8 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.site.auth.model.Permission;
-import com.site.auth.service.AuthService;
+import com.site.entity.auth.Permission;
+import com.site.service.auth.AuthService;
 
 @Controller
 @RequestMapping("menu")

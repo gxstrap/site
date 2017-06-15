@@ -8,9 +8,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.site.auth.model.Role;
-import com.site.auth.service.AuthService;
-import com.site.framework.base.Page;
+import com.site.common.framework.base.Page;
+import com.site.entity.auth.Role;
+import com.site.service.auth.AuthService;
 
 @Controller
 @RequestMapping("role")

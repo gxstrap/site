@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.site.auth.mapper.UserRoleMapper">
+<mapper namespace="com.site.mapper.auth.UserRoleMapper">
 
-	<resultMap id="userRoleMap" type="com.site.auth.model.UserRole">
+	<resultMap id="userRoleMap" type="com.site.entity.auth.UserRole">
 		<result property="id" column="ID" />
 		<result property="userId" column="USER_ID" />
 		<result property="roleId" column="ROLE_ID" />
@@ -12,7 +12,7 @@
 		<result property="updateTime" column="UPDATE_TIME" />
 	</resultMap>
 
-	<insert id="insert" parameterType="com.site.auth.model.UserRole">
+	<insert id="insert" parameterType="com.site.entity.auth.UserRole">
 		insert into t_auth_user_role(id , user_id , role_id , is_del , create_time , update_time) values(#{id} , #{userId} , #{roleId} ,#{isDel} , #{createTime} , #{updateTime})
 	</insert>
 
@@ -46,7 +46,7 @@
 		<include refid="where_xxx" />
 	</select>
 
-	<update id="update" parameterType="com.site.auth.model.UserRole">
+	<update id="update" parameterType="com.site.entity.auth.UserRole">
 		UPDATE t_auth_user_role
 		<set>
 			<if test="userId != null and userId!=''">

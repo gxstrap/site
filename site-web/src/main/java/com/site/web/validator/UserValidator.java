@@ -5,7 +5,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import com.site.auth.dto.UserDto;
+import com.site.entity.auth.dto.UserDto;
 
 /**
  * @author Vincent.wang

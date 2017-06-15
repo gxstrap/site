@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.site.auth.dto.UserDto;
-import com.site.auth.model.User;
-import com.site.auth.service.AuthService;
-import com.site.auth.util.UserEncodes;
 import com.site.common.exception.BusinessException;
-import com.site.framework.base.Page;
+import com.site.common.framework.base.Page;
+import com.site.entity.auth.User;
+import com.site.entity.auth.dto.UserDto;
+import com.site.entity.auth.util.UserEncodes;
+import com.site.service.auth.AuthService;
 
 @Controller
 @RequestMapping("user")
