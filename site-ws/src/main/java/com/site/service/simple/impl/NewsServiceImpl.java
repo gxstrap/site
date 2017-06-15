@@ -67,7 +67,6 @@ public class NewsServiceImpl implements NewsService {
             return false;
     }
 
-    @Transactional
     @DataSource(DataSourceEnum.MASTER)
     @Override
     public boolean deleteNewsById(String id) {
@@ -134,7 +133,6 @@ public class NewsServiceImpl implements NewsService {
             return false;
     }
 
-    @Transactional
     @DataSource(DataSourceEnum.SLAVE)
     @Override
     public boolean deleteSlaveNewById(String id) {
