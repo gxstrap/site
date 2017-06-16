@@ -35,8 +35,9 @@
 	<loggers>
 		<!-- 3rdparty Loggers -->
 		<logger name="com.site" level="debug" />
-		<logger name="org.springframework" level="debug" />
-		<logger name="org.springframework.transaction" level="debug" />
+		<logger name="org.springframework" level="info" />
+		<logger name="com.atomikos" level="info" />
+		<!-- <logger name="org.springframework.transaction" level="debug" /> -->
 		<logger name="com.alibaba" level="info" />
 		<logger name="com.netflix" level="info" />
 		<logger name="org.jboss" level="info" />
@@ -56,7 +57,7 @@
 		<!-- 在类里面采用这种声明方式：private static final Logger log = LoggerFactory.getLogger("com.site.bizLog"); -->
 		<logger name="com.site.bizLog" level="info" additivity="false">
 			<appender-ref ref="Console" />
-			<appender-ref ref="BusinessLog" />
+			<appender-ref ref="RollingLog" />
 		</logger>
 
 		<!-- Root Logger -->

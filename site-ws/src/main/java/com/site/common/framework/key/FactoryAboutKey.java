@@ -22,8 +22,8 @@ import com.alibaba.fastjson.JSON;
 import com.site.common.framework.key.model.Key;
 import com.site.common.framework.key.properties.MasterKeyProperties;
 import com.site.common.framework.key.properties.SlaveKeyProperties;
-import com.site.common.framework.key.service.KeyService;
 import com.site.common.framework.key.table.TableNameEnum;
+import com.site.service.key.KeyService;
 
 /** 
  * @Description 生成主键：在项目启动时，将库里的主键id全部查询出来，放到本地内存中(集合)。 <br/>

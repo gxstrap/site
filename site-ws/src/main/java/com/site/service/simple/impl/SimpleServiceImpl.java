@@ -8,7 +8,7 @@ import com.site.entity.simple.News;
 import com.site.service.simple.NewsService;
 import com.site.service.simple.SimpleService;
 
-@Service
+@Service("simpleService")
 public class SimpleServiceImpl implements SimpleService {
 
     @Autowired

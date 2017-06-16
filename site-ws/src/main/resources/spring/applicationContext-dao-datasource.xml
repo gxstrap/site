@@ -9,68 +9,61 @@
     http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
     http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
-	<util:properties id="p_db" location="classpath:/config/jdbc.properties" />
+	<context:property-placeholder location="classpath*:config/jdbc.properties" ignore-unresolvable="true" />
 
-	<!-- 主数据源，使用alibaba druid连接池 -->
-	<bean id="masterDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
-		<property name="driverClassName" value="#{p_db['master.driverClassName']}" />
-		<property name="url" value="#{p_db['master.url']}" />
-		<property name="username" value="#{p_db['master.username']}" />
-		<property name="password" value="#{p_db['master.password']}" />
-		<property name="validationQuery" value="#{p_db['master.validationQuery']}" />
-		
-		<property name="initialSize" value="#{p_db['ds.initialSize']}" />
-		<property name="maxActive" value="#{p_db['ds.maxActive']}" />
-		<property name="minIdle" value="#{p_db['ds.minIdle']}" />
-		<property name="maxWait" value="#{p_db['ds.maxWait']}" />
-		<property name="useUnfairLock" value="#{p_db['ds.useUnfairLock']}" />
-		<property name="testOnBorrow" value="#{p_db['ds.testOnBorrow']}" />
-		<property name="testOnReturn" value="#{p_db['ds.testOnReturn']}" />
-		<property name="testWhileIdle" value="#{p_db['ds.testWhileIdle']}" />
-		<property name="timeBetweenEvictionRunsMillis" value="#{p_db['ds.timeBetweenEvictionRunsMillis']}" />
-		<property name="minEvictableIdleTimeMillis" value="#{p_db['ds.minEvictableIdleTimeMillis']}" />
-		<property name="filters" value="#{p_db['ds.filters']}" />
-	</bean>
-	
-	<!-- 从数据源，使用alibaba druid连接池 -->
-	<bean id="slaveDataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
-		<property name="driverClassName" value="#{p_db['slave.driverClassName']}" />
-		<property name="url" value="#{p_db['slave.url']}" />
-		<property name="username" value="#{p_db['slave.username']}" />
-		<property name="password" value="#{p_db['slave.password']}" />
-		<property name="validationQuery" value="#{p_db['slave.validationQuery']}" />
-		
-		<property name="initialSize" value="#{p_db['ds.initialSize']}" />
-		<property name="maxActive" value="#{p_db['ds.maxActive']}" />
-		<property name="minIdle" value="#{p_db['ds.minIdle']}" />
-		<property name="maxWait" value="#{p_db['ds.maxWait']}" />
-		<property name="useUnfairLock" value="#{p_db['ds.useUnfairLock']}" />
-		<property name="testOnBorrow" value="#{p_db['ds.testOnBorrow']}" />
-		<property name="testOnReturn" value="#{p_db['ds.testOnReturn']}" />
-		<property name="testWhileIdle" value="#{p_db['ds.testWhileIdle']}" />
-		<property name="timeBetweenEvictionRunsMillis" value="#{p_db['ds.timeBetweenEvictionRunsMillis']}" />
-		<property name="minEvictableIdleTimeMillis" value="#{p_db['ds.minEvictableIdleTimeMillis']}" />
-		<property name="filters" value="#{p_db['ds.filters']}" />
+	<bean id="abstractXADataSource" class="com.atomikos.jdbc.AtomikosDataSourceBean" init-method="init" destroy-method="close" abstract="true">
+		<property name="poolSize" value="${datasource.poolSize}" />
+		<property name="minPoolSize" value="${datasource.minPoolSize}" />
+		<property name="maxPoolSize" value="${datasource.maxPoolSize}" />
+		<property name="borrowConnectionTimeout" value="${datasource.borrowConnectionTimeout}" />
+		<property name="reapTimeout" value="${datasource.reapTimeout}" />
+		<property name="maxIdleTime" value="${datasource.maxIdleTime}" />
+		<property name="maintenanceInterval" value="${datasource.maintenanceInterval}" />
+		<property name="loginTimeout" value="${datasource.loginTimeout}" />
+		<property name="logWriter" value="${datasource.logWriter}" />
 	</bean>
 
-	<!-- 总数据源 -->
-	<bean id="dataSource" class="com.site.common.framework.datasource.DynamicDataSource">
+	<bean id="masterDataSource" parent="abstractXADataSource">
+		<property name="uniqueResourceName" value="master" />
+		<property name="xaDataSourceClassName" value="${master.datasource.xaDataSourceClassName}" />
+		<property name="testQuery" value="${master.datasource.testQuery}" />
+		<property name="xaProperties">
+			<props>
+				<prop key="URL">${master.datasource.url}</prop>
+				<prop key="user">${master.datasource.username}</prop>
+				<prop key="password">${master.datasource.password}</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="slaveDataSource" parent="abstractXADataSource">
+		<property name="uniqueResourceName" value="slave" />
+		<property name="xaDataSourceClassName" value="${slave.datasource.xaDataSourceClassName}" />
+		<property name="testQuery" value="${slave.datasource.testQuery}" />
+		<property name="xaProperties">
+			<props>
+				<prop key="URL">${slave.datasource.url}</prop>
+				<prop key="user">${slave.datasource.username}</prop>
+				<prop key="password">${slave.datasource.password}</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="dynamicDatasource" class="com.site.common.framework.datasource.DynamicDataSource">
 		<property name="targetDataSources">
 			<map key-type="java.lang.String">
-				<entry key="master" value-ref="masterDataSource" />
 				<entry key="slave" value-ref="slaveDataSource" />
+				<entry key="master" value-ref="masterDataSource" />
 			</map>
 		</property>
-		<property name="defaultTargetDataSource" ref="masterDataSource" />
+		<property name="defaultTargetDataSource" ref="slaveDataSource" />
 	</bean>
 
-	<!-- 数据源Aspect -->
 	<bean id="dataSourceAspect" class="com.site.common.framework.datasource.DataSourceAspect" />
 
-	<!-- 数据源AOP -->
 	<aop:config>
 		<aop:aspect order="1" ref="dataSourceAspect">
-			<aop:before pointcut="execution(* com.site..*Service.*(..))" method="before" />
+			<aop:before pointcut="execution(* com.site.service..*Service.*(..))" method="before" />
 		</aop:aspect>
 	</aop:config>
 

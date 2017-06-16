@@ -5,8 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-import com.site.common.framework.mybatis.mapper.BaseMapper;
 import com.site.entity.simple.News;
+import com.site.mapper.SqlMapper;
 
 
 /** 
@@ -15,8 +15,16 @@ import com.site.entity.simple.News;
  * @date Mar 16, 2017 3:35:19 PM  
  */
 @Repository
-public interface NewsMapper extends BaseMapper<String, News> {
+public interface NewsMapper extends SqlMapper {
 
     List<News> findNewsByPage(@Param("keywords") String keywords);
+
+    int insert(News news);
+
+    int update(News news);
+
+    int delete(String id);
+
+    News findById(String id);
 
 }

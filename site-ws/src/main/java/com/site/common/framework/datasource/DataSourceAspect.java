@@ -5,12 +5,16 @@ import java.lang.reflect.Method;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 数据源切面类
  * 
  */
 public class DataSourceAspect {
+
+    private static final Logger log = LoggerFactory.getLogger(DataSourceAspect.class);
 
     /**
      * 
@@ -38,6 +42,10 @@ public class DataSourceAspect {
                 dataSource = method.getAnnotation(DataSource.class);
             else if (targetClass.isAnnotationPresent(DataSource.class)) // 获取类上的数据源设置
                 dataSource = targetClass.getAnnotation(DataSource.class);
+
+            if (log.isDebugEnabled()) {
+                log.debug("=========  {}.{}()", targetClass.getName(), methodName);
+            }
 
             if (dataSource != null) {
                 DataSourceEnum dataSourceName = dataSource.value();

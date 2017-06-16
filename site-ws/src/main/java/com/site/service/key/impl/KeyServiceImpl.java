@@ -1,4 +1,4 @@
-package com.site.common.framework.key.service.impl;
+package com.site.service.key.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 import com.site.common.framework.datasource.DataSource;
 import com.site.common.framework.datasource.DataSourceEnum;
 import com.site.common.framework.key.model.Key;
-import com.site.common.framework.key.service.KeyService;
 import com.site.mapper.key.KeyMapper;
+import com.site.service.key.KeyService;
 
 /**
  * 
@@ -57,7 +57,8 @@ public class KeyServiceImpl implements KeyService {
     public List<Key> getMasterDBTables() {
         List<Key> keyList = new ArrayList<Key>();
         try {
-            keyList = keyMapper.getTablesBySQLite();
+            keyList = keyMapper.getTablesByMySQL();
+            //keyList = keyMapper.getTablesBySQLite();
         } catch (Exception e) {
             e.printStackTrace();
         }

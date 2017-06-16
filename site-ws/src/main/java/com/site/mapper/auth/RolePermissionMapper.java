@@ -2,15 +2,17 @@ package com.site.mapper.auth;
 
 import org.springframework.stereotype.Repository;
 
-import com.site.common.framework.mybatis.mapper.BaseMapper;
 import com.site.entity.auth.RolePermission;
+import com.site.mapper.SqlMapper;
 
 /**
  * 角色菜单许可Mapper
  */
 @Repository
-public interface RolePermissionMapper extends BaseMapper<String, RolePermission> {
+public interface RolePermissionMapper extends SqlMapper {
 
     public RolePermission findRolePermission(RolePermission per);
+
+    public void insert(RolePermission rolePermission);
 
 }

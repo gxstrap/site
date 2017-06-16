@@ -1,4 +1,4 @@
-package com.site.common.framework.key.service;
+package com.site.service.key;
 
 import java.util.List;
 

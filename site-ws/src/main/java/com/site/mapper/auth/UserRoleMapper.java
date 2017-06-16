@@ -2,13 +2,15 @@ package com.site.mapper.auth;
 
 import org.springframework.stereotype.Repository;
 
-import com.site.common.framework.mybatis.mapper.BaseMapper;
 import com.site.entity.auth.UserRole;
+import com.site.mapper.SqlMapper;
 
 /**
  * 用户角色Mapper
  */
 @Repository
-public interface UserRoleMapper extends BaseMapper<String, UserRole> {
+public interface UserRoleMapper extends SqlMapper {
+
+    void insert(UserRole ur);
 
 }

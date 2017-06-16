@@ -4,15 +4,15 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.site.common.framework.mybatis.mapper.BaseMapper;
 import com.site.entity.auth.Permission;
+import com.site.mapper.SqlMapper;
 
 /**
  * 菜单许可Mapper
  *
  */
 @Repository
-public interface PermissionMapper extends BaseMapper<String, Permission> {
+public interface PermissionMapper extends SqlMapper {
 
     /**
      * 查询用户所能访问的所有菜单
@@ -31,4 +31,10 @@ public interface PermissionMapper extends BaseMapper<String, Permission> {
      * @return
      */
     public Permission findPermissionByParentId(String permissionKey);
+
+    public List<Permission> findAll();
+
+    public void insert(Permission permission);
+
+    public Permission findById(String permissionId);
 }

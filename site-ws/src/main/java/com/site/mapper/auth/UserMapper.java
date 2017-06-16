@@ -5,15 +5,15 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.site.common.framework.base.Page;
-import com.site.common.framework.mybatis.mapper.BaseMapper;
 import com.site.entity.auth.User;
+import com.site.mapper.SqlMapper;
 
 /**
  * 用户Mapper
  * 
  */
 @Repository
-public interface UserMapper extends BaseMapper<String, User> {
+public interface UserMapper extends SqlMapper {
 
     /**
      * 根据用户名查询用户
@@ -69,5 +69,11 @@ public interface UserMapper extends BaseMapper<String, User> {
      * @return 用户
      */
     public User findUserByLoginName(String loginName);
+
+    public int insert(User user);
+
+    public int update(User user);
+
+    public User findById(String userId);
 
 }

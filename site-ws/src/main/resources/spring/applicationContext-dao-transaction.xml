@@ -6,15 +6,31 @@
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd  
     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-	<!-- 事务管理器 -->
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource" />
+	<description>配置事物</description>
+
+	<bean id="atomikosTransactionManager" class="com.atomikos.icatch.jta.UserTransactionManager" init-method="init" destroy-method="close">
+		<property name="forceShutdown">
+			<value>true</value>
+		</property>
 	</bean>
 
-	<!-- 事务配置 -->
-	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+	<bean id="atomikosUserTransaction" class="com.atomikos.icatch.jta.UserTransactionImp">
+		<property name="transactionTimeout" value="300" />
+	</bean>
+
+	<bean id="springTransactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">
+		<property name="transactionManager">
+			<ref bean="atomikosTransactionManager" />
+		</property>
+		<property name="userTransaction">
+			<ref bean="atomikosUserTransaction" />
+		</property>
+	</bean>
+
+	<tx:annotation-driven transaction-manager="springTransactionManager" proxy-target-class="true" />
+
+	<tx:advice id="txAdvice" transaction-manager="springTransactionManager">
 		<tx:attributes>
-			<!-- 其它方法使用普通事务 -->
 			<tx:method name="insert*" propagation="REQUIRED" rollback-for="Exception" />
 			<tx:method name="update*" propagation="REQUIRED" rollback-for="Exception" />
 			<tx:method name="delete*" propagation="REQUIRED" rollback-for="Exception" />
@@ -29,14 +45,6 @@
 	</tx:advice>
 
 	<aop:config proxy-target-class="true">
-		<aop:advisor pointcut="(execution(* com.site.service..*.*(..)))" advice-ref="txAdvice" order="2" />
+		<aop:advisor pointcut="execution(* com.site.service..*.*(..))" advice-ref="txAdvice" order="2"/>
 	</aop:config>
-
-	<!-- 其他接口事务 -->
-	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
-
-	<bean id="transactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
-		<property name="transactionManager" ref="transactionManager" />
-	</bean>
-
 </beans>    

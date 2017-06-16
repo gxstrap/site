@@ -5,9 +5,10 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.site.common.framework.key.model.Key;
+import com.site.mapper.SqlMapper;
 
 @Repository
-public interface KeyMapper {
+public interface KeyMapper extends SqlMapper{
 
     /**
      * @return 返回key集合

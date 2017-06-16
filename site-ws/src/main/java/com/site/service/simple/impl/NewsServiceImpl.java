@@ -8,8 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -38,8 +36,6 @@ public class NewsServiceImpl implements NewsService {
 
     // ---- master
 
-    // @Transactional
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
     @DataSource(DataSourceEnum.MASTER)
     @Override
     public boolean addNews(News news) {
@@ -56,8 +52,6 @@ public class NewsServiceImpl implements NewsService {
             return false;
     }
 
-    // @Transactional
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
     @DataSource(DataSourceEnum.SLAVE)
     @Override
     public boolean addSlaveNews(News news) {
