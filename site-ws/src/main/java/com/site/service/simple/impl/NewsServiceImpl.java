@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
@@ -37,12 +38,31 @@ public class NewsServiceImpl implements NewsService {
 
     // ---- master
 
+    // @Transactional
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     @DataSource(DataSourceEnum.MASTER)
-    @Transactional
     @Override
     public boolean addNews(News news) {
         if (news != null) {
-            news.setId(FactoryAboutKey.getPkByMasterDB(Master.T_NEWS));
+            news.setId(FactoryAboutKey.getPk(Master.T_NEWS));
+            news.setIsDel(Constants.IS_DEL_N);
+            news.setCreateTime(Calendar.getInstance().getTime());
+            int flag = newsMapper.insert(news);
+            if (flag == 1)
+                return true;
+            else
+                return false;
+        } else
+            return false;
+    }
+
+    // @Transactional
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @DataSource(DataSourceEnum.SLAVE)
+    @Override
+    public boolean addSlaveNews(News news) {
+        if (news != null) {
+            news.setId(FactoryAboutKey.getPk(Slave.T_NEWS));
             news.setIsDel(Constants.IS_DEL_N);
             news.setCreateTime(Calendar.getInstance().getTime());
             int flag = newsMapper.insert(news);
@@ -102,23 +122,6 @@ public class NewsServiceImpl implements NewsService {
     }
 
     // ---- slave
-
-    @DataSource(DataSourceEnum.SLAVE)
-    @Transactional
-    @Override
-    public boolean addSlaveNews(News news) {
-        if (news != null) {
-            news.setId(FactoryAboutKey.getPkBySlaveDB(Slave.T_NEWS));
-            news.setIsDel(Constants.IS_DEL_N);
-            news.setCreateTime(Calendar.getInstance().getTime());
-            int flag = newsMapper.insert(news);
-            if (flag == 1)
-                return true;
-            else
-                return false;
-        } else
-            return false;
-    }
 
     @DataSource(DataSourceEnum.SLAVE)
     @Override

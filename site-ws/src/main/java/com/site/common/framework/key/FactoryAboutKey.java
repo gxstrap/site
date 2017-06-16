@@ -138,17 +138,17 @@ public class FactoryAboutKey {
         log.debug("# slave db properties ={}", JSON.toJSONString(slaveTabMap));
         // 判断slave db 表名是否在slave数据库中存在
         List<Key> slaveKeys = new ArrayList<>();
-        for (String masterTableName : slaveTblExist) {
-            if (!slaveTabMap.containsKey(masterTableName)) {
-                throw new Exception(masterTableName + "表名在数据库中不存在或SlaveTablesPKEnum类中没做相应的配置");
+        for (String slaveTableName : slaveTblExist) {
+            if (!slaveTabMap.containsKey(slaveTableName)) {
+                throw new Exception(slaveTableName + "表名在数据库中不存在或SlaveTablesPKEnum类中没做相应的配置");
             }
-            slaveKey = slaveKeyFromProperiesMap.get(masterTableName);
-            slaveKey.setId(slaveTabMap.get(masterTableName));
+            slaveKey = slaveKeyFromProperiesMap.get(slaveTableName);
+            slaveKey.setId(slaveTabMap.get(slaveTableName));
             slaveKeys.add(slaveKey);
         }
 
         // 拼装slave主键id
-        List<Key> slaveTabPkValues = keyService.getMasterDBTableValues(slaveKeys);
+        List<Key> slaveTabPkValues = keyService.getSlaveDBTableValues(slaveKeys);
         if (log.isDebugEnabled()) {
             log.debug("## slaveTabPkValues.size={}", slaveTabPkValues.size());
         }
@@ -181,7 +181,7 @@ public class FactoryAboutKey {
      * @param pk 表枚举配置项
      * @return 表新产生的ID
      */
-    public static String getPkByMasterDB(TableNameEnum.Master pk) {
+    public static String getPk(TableNameEnum.Master pk) {
         boolean isloap = true;
         String finalId = "";
         while (isloap) {
@@ -219,7 +219,7 @@ public class FactoryAboutKey {
      * @param pk 表枚举配置项
      * @return 表新产生的ID
      */
-    public static String getPkBySlaveDB(TableNameEnum.Slave pk) {
+    public static String getPk(TableNameEnum.Slave pk) {
         boolean isloap = true;
         String finalId = "";
         while (isloap) {

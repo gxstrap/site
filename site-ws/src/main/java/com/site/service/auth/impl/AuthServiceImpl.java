@@ -67,7 +67,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public boolean insertUser(User user) {
-        user.setId(FactoryAboutKey.getPkByMasterDB(Master.T_AUTH_USER));
+        user.setId(FactoryAboutKey.getPk(Master.T_AUTH_USER));
         user.setIsDel(Constants.IS_DEL_N);
         user.setCreateTime(DateUtil.getSystemDateTime());
         int flag = userMapper.insert(user);
@@ -119,7 +119,7 @@ public class AuthServiceImpl implements AuthService {
         }
         Role r = findRoleByCode(role.getRoleCode());
         if (r == null) {
-            role.setId(FactoryAboutKey.getPkByMasterDB(Master.T_AUTH_ROLE));
+            role.setId(FactoryAboutKey.getPk(Master.T_AUTH_ROLE));
             role.setIsDel(Constants.IS_DEL_N);
             role.setCreateTime(DateUtil.getSystemDateTime());
             roleMapper.insert(role);
@@ -131,7 +131,7 @@ public class AuthServiceImpl implements AuthService {
         if (permission == null || StringUtils.isBlank(permission.getMenuCode()) || StringUtils.isBlank(permission.getParentId()) || StringUtils.isBlank(permission.getMenuName())) {
             throw new BusinessException("## 创建菜单出错；菜单项数据不完整，无法进行创建。");
         }
-        permission.setId(FactoryAboutKey.getPkByMasterDB(Master.T_AUTH_PERMISSION));
+        permission.setId(FactoryAboutKey.getPk(Master.T_AUTH_PERMISSION));
         permission.setIsDel(Constants.IS_DEL_N);
         permission.setCreateTime(DateUtil.getSystemDateTime());
         permissionMapper.insert(permission);
@@ -155,7 +155,7 @@ public class AuthServiceImpl implements AuthService {
         if (rp == null) {
             rolePermission.setIsDel(Constants.IS_DEL_N);
             rolePermission.setCreateTime(DateUtil.getSystemDateTime());
-            rolePermission.setId(FactoryAboutKey.getPkByMasterDB(Master.T_AUTH_ROLE_PERMISSION));
+            rolePermission.setId(FactoryAboutKey.getPk(Master.T_AUTH_ROLE_PERMISSION));
             rolePermissionMapper.insert(rolePermission);
         }
 
@@ -191,13 +191,13 @@ public class AuthServiceImpl implements AuthService {
         UserEncodes.entryptPassword(user);
         user.setIsDel(Constants.IS_DEL_N);
         user.setCreateTime(DateUtil.getSystemDateTime());
-        user.setId(FactoryAboutKey.getPkByMasterDB(Master.T_AUTH_USER));
+        user.setId(FactoryAboutKey.getPk(Master.T_AUTH_USER));
         userMapper.insert(user);
 
         UserRole ur = new UserRole();
         ur.setRoleId(r.getId());
         ur.setUserId(user.getId());
-        ur.setId(FactoryAboutKey.getPkByMasterDB(Master.T_AUTH_USER_ROLE));
+        ur.setId(FactoryAboutKey.getPk(Master.T_AUTH_USER_ROLE));
         ur.setIsDel(Constants.IS_DEL_N);
         ur.setCreateTime(DateUtil.getSystemDateTime());
         userRoleMapper.insert(ur);

@@ -25,22 +25,11 @@
 			<tx:method name="call*" propagation="REQUIRED" rollback-for="Exception" />
 			<tx:method name="modify*" propagation="REQUIRED" rollback-for="Exception" />
 			<tx:method name="remove*" propagation="REQUIRED" rollback-for="Exception" />
-
-			<!-- 默认只读 -->
-			<!-- <tx:method name="*" read-only="true" /> -->
-
 		</tx:attributes>
 	</tx:advice>
 
-	<!-- 事务AOP -->
-	<!-- <aop:config> -->
-	<!-- <aop:pointcut id="txPointCut" expression="execution(* com.site..*Service.*(..))" /> -->
-	<!-- <aop:pointcut id="txPointCut" expression="(execution(* com.site.service..*.*(..)))" /> -->
-	<!-- <aop:advisor order="2" pointcut-ref="txPointCut" advice-ref="txAdvice" /> -->
-	<!-- </aop:config> -->
-
 	<aop:config proxy-target-class="true">
-		<aop:advisor pointcut="(execution(* com.site.service..*.*(..)))" advice-ref="txAdvice" />
+		<aop:advisor pointcut="(execution(* com.site.service..*.*(..)))" advice-ref="txAdvice" order="2" />
 	</aop:config>
 
 	<!-- 其他接口事务 -->

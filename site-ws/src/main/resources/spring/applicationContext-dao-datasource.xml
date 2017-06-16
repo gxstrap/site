@@ -70,25 +70,8 @@
 	<!-- 数据源AOP -->
 	<aop:config>
 		<aop:aspect order="1" ref="dataSourceAspect">
-			<aop:pointcut id="dsPointCut" expression="execution(* com.site..*Service.*(..))" />
-			<aop:before pointcut-ref="dsPointCut" method="before" />
+			<aop:before pointcut="execution(* com.site..*Service.*(..))" method="before" />
 		</aop:aspect>
-	</aop:config>
-
-	<!-- 配置druid监控spring jdbc -->
-	<!-- Spring和Jdbc的关联监控 ， 方法名正则匹配拦截配置 -->
-	<bean id="druid-stat-interceptor" class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor" />
-
-	<bean id="druid-stat-pointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut" scope="prototype">
-		<property name="patterns">
-			<list>
-				<value>com.site.*</value>
-			</list>
-		</property>
-	</bean>
-
-	<aop:config>
-		<aop:advisor advice-ref="druid-stat-interceptor" pointcut-ref="druid-stat-pointcut" />
 	</aop:config>
 
 </beans>    

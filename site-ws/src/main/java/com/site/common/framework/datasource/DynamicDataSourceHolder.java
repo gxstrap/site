@@ -23,6 +23,7 @@ public class DynamicDataSourceHolder {
      * @return String 数据源对应的key
      */
     public static String getDataSourceKey() {
+        System.err.println("数据源对应的key="+threadLocal.get());
         return threadLocal.get();
     }
 }

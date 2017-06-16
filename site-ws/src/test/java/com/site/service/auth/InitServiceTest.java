@@ -54,7 +54,7 @@ public class InitServiceTest {
 
     private synchronized static Permission newPermission(String menuName, String parentId, String url, Integer lev, Integer sort) {
         Permission per = new Permission();
-        String id = FactoryAboutKey.getPkByMasterDB(Master.T_AUTH_PERMISSION);
+        String id = FactoryAboutKey.getPk(Master.T_AUTH_PERMISSION);
         per.setId(id);
         if (StringUtils.isBlank(parentId)) {
             per.setParentId(id);
