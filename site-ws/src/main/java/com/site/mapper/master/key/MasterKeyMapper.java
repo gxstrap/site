@@ -1,4 +1,4 @@
-package com.site.mapper.key;
+package com.site.mapper.master.key;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import com.site.common.framework.key.model.Key;
 import com.site.mapper.SqlMapper;
 
 @Repository
-public interface KeyMapper extends SqlMapper{
+public interface MasterKeyMapper extends SqlMapper{
 
     /**
      * @return 返回key集合

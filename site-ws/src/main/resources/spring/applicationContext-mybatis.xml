@@ -7,13 +7,13 @@
     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 	<description>MyBatis的数据库持久层配置/配置主-从数据源</description>
-	
+
 	<bean id="masterSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="masterDataSource" />
 		<property name="plugins">
 			<array>
 				<bean class="com.github.pagehelper.PageInterceptor">
-					<property name="properties" value="helperDialect=mysql"/>
+					<property name="properties" value="helperDialect=mysql" />
 				</bean>
 			</array>
 		</property>
@@ -36,19 +36,34 @@
 		<property name="mapperLocations" value="classpath*:mybatis/slave/**/*.xml" />
 	</bean>
 
-	<bean id="sqlSessionTemplate" class="com.site.common.framework.sqlsession.CustomSqlSessionTemplate" scope="prototype">
-		<constructor-arg ref="slaveSqlSessionFactory" />
-		<property name="targetSqlSessionFactorys">
-			<map>
-				<entry value-ref="masterSqlSessionFactory" key="master" />
-				<entry value-ref="slaveSqlSessionFactory" key="slave" />
-			</map>
-		</property>
+
+	<!-- <bean id="sqlSessionTemplate" class="com.site.common.framework.sqlsession.CustomSqlSessionTemplate" scope="prototype"> -->
+	<!-- <constructor-arg ref="slaveSqlSessionFactory" /> -->
+	<!-- <property name="targetSqlSessionFactorys"> -->
+	<!-- <map> -->
+	<!-- <entry value-ref="masterSqlSessionFactory" key="master" /> -->
+	<!-- <entry value-ref="slaveSqlSessionFactory" key="slave" /> -->
+	<!-- </map> -->
+	<!-- </property> -->
+	<!-- </bean> -->
+
+	<bean id="masterSqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="masterSqlSessionFactory" />
 	</bean>
 
-	<bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.site.mapper" />
-		<property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate" />
+	<bean id="slaveSqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="slaveSqlSessionFactory" />
+	</bean>
+
+	<bean id="masterMapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.site.mapper.master" />
+		<property name="sqlSessionTemplateBeanName" value="masterSqlSessionTemplate" />
+		<property name="markerInterface" value="com.site.mapper.SqlMapper" />
+	</bean>
+
+	<bean id="slaveMapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.site.mapper.slave" />
+		<property name="sqlSessionTemplateBeanName" value="slaveSqlSessionTemplate" />
 		<property name="markerInterface" value="com.site.mapper.SqlMapper" />
 	</bean>
 

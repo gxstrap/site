@@ -13,7 +13,8 @@ import org.springframework.stereotype.Service;
 import com.site.common.framework.datasource.DataSource;
 import com.site.common.framework.datasource.DataSourceEnum;
 import com.site.common.framework.key.model.Key;
-import com.site.mapper.key.KeyMapper;
+import com.site.mapper.master.key.MasterKeyMapper;
+import com.site.mapper.slave.key.SlaveKeyMapper;
 import com.site.service.key.KeyService;
 
 /**
@@ -25,14 +26,17 @@ import com.site.service.key.KeyService;
 public class KeyServiceImpl implements KeyService {
 
     @Autowired
-    private KeyMapper keyMapper;
+    private MasterKeyMapper masterKeyMapper;
+    
+    @Autowired
+    private SlaveKeyMapper slaveKeyMapper;
 
     @DataSource(DataSourceEnum.MASTER)
     @Override
     public List<Key> getMasterDBTableValues(List<Key> keys) {
         List<Key> keyList = new ArrayList<Key>();
         try {
-            keyList = keyMapper.getTableValues(keys);
+            keyList = masterKeyMapper.getTableValues(keys);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -44,7 +48,7 @@ public class KeyServiceImpl implements KeyService {
     public List<Key> getMasterDBTables() {
         List<Key> keyList = new ArrayList<Key>();
         try {
-            keyList = keyMapper.getTablesByMySQL();
+            keyList = masterKeyMapper.getTablesByMySQL();
             // keyList = keyMapper.getTablesBySQLite();
         } catch (Exception e) {
             e.printStackTrace();
@@ -57,7 +61,7 @@ public class KeyServiceImpl implements KeyService {
     public List<Key> getSlaveDBTableValues(List<Key> keys) {
         List<Key> keyList = new ArrayList<Key>();
         try {
-            keyList = keyMapper.getTableValues(keys);
+            keyList = slaveKeyMapper.getTableValues(keys);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -69,7 +73,7 @@ public class KeyServiceImpl implements KeyService {
     public List<Key> getSlaveDBTables() {
         List<Key> keyList = new ArrayList<Key>();
         try {
-            keyList = keyMapper.getTablesByMySQL();
+            keyList = slaveKeyMapper.getTablesByMySQL();
         } catch (Exception e) {
             e.printStackTrace();
         }

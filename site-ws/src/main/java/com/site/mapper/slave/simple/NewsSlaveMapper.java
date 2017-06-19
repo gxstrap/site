@@ -1,4 +1,4 @@
-package com.site.mapper.simple;
+package com.site.mapper.slave.simple;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import com.site.mapper.SqlMapper;
  * @date Mar 16, 2017 3:35:19 PM  
  */
 @Repository
-public interface NewsMapper extends SqlMapper {
+public interface NewsSlaveMapper extends SqlMapper {
 
     List<News> findNewsByPage(@Param("keywords") String keywords);
 

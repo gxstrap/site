@@ -9,9 +9,7 @@
 	<description>配置事物</description>
 
 	<bean id="atomikosTransactionManager" class="com.atomikos.icatch.jta.UserTransactionManager" init-method="init" destroy-method="close">
-		<property name="forceShutdown">
-			<value>true</value>
-		</property>
+		<property name="forceShutdown" value="true"/>
 	</bean>
 
 	<bean id="atomikosUserTransaction" class="com.atomikos.icatch.jta.UserTransactionImp">
@@ -19,13 +17,11 @@
 	</bean>
 
 	<bean id="springTransactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">
-		<property name="transactionManager">
-			<ref bean="atomikosTransactionManager" />
-		</property>
-		<property name="userTransaction">
-			<ref bean="atomikosUserTransaction" />
-		</property>
+		<property name="transactionManager" ref="atomikosTransactionManager"/>
+		<property name="userTransaction" ref="atomikosUserTransaction"/>
 	</bean>
+	
+	<aop:aspectj-autoproxy />
 
 	<tx:annotation-driven transaction-manager="springTransactionManager" proxy-target-class="true" />
 
@@ -47,4 +43,5 @@
 	<aop:config proxy-target-class="true">
 		<aop:advisor pointcut="execution(* com.site.service..*.*(..))" advice-ref="txAdvice" order="2"/>
 	</aop:config>
+	
 </beans>    

@@ -13,7 +13,7 @@ import com.site.common.constants.Constants;
 import com.site.common.exception.BusinessException;
 import com.site.entity.auth.User;
 import com.site.entity.auth.util.UserEncodes;
-import com.site.mapper.auth.UserMapper;
+import com.site.mapper.master.auth.UserMapper;
 import com.site.service.auth.UserService;
 import com.site.util.DateUtil;
 

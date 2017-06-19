@@ -1,4 +1,4 @@
-package com.site.mapper.auth;
+package com.site.mapper.master.auth;
 
 import java.util.List;
 

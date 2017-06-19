@@ -22,8 +22,8 @@
 		<project.build.jdkVersion>1.7</project.build.jdkVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<spring.version>4.3.4.RELEASE</spring.version>
-		<atomikos.version>4.0.3</atomikos.version>
+		<spring.version>4.3.9.RELEASE</spring.version>
+		<atomikos.version>4.0.4</atomikos.version>
 	</properties>
 
 	<dependencyManagement>
@@ -133,7 +133,7 @@
 			<dependency>
 				<groupId>cglib</groupId>
 				<artifactId>cglib-nodep</artifactId>
-				<version>3.2.2</version>
+				<version>3.2.4</version>
 			</dependency>
 
 			<!-- freemarker -->

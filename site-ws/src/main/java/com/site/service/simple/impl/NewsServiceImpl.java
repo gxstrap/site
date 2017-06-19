@@ -18,7 +18,8 @@ import com.site.common.framework.key.FactoryAboutKey;
 import com.site.common.framework.key.table.TableNameEnum.Master;
 import com.site.common.framework.key.table.TableNameEnum.Slave;
 import com.site.entity.simple.News;
-import com.site.mapper.simple.NewsMapper;
+import com.site.mapper.master.simple.NewsMasterMapper;
+import com.site.mapper.slave.simple.NewsSlaveMapper;
 import com.site.service.simple.NewsService;
 
 /** 
@@ -32,7 +33,10 @@ public class NewsServiceImpl implements NewsService {
     private static final Logger log = LoggerFactory.getLogger(NewsServiceImpl.class);
 
     @Autowired
-    private NewsMapper newsMapper;
+    private NewsMasterMapper newsMasterMapper;
+
+    @Autowired
+    private NewsSlaveMapper newsSlaveMapper;
 
     @DataSource(DataSourceEnum.MASTER)
     @Override
@@ -41,7 +45,7 @@ public class NewsServiceImpl implements NewsService {
             news.setId(FactoryAboutKey.getPk(Master.T_NEWS));
             news.setIsDel(Constants.IS_DEL_N);
             news.setCreateTime(Calendar.getInstance().getTime());
-            int flag = newsMapper.insert(news);
+            int flag = newsMasterMapper.insert(news);
             if (flag == 1)
                 return true;
             else
@@ -57,7 +61,7 @@ public class NewsServiceImpl implements NewsService {
             news.setId(FactoryAboutKey.getPk(Slave.T_NEWS));
             news.setIsDel(Constants.IS_DEL_N);
             news.setCreateTime(Calendar.getInstance().getTime());
-            int flag = newsMapper.insert(news);
+            int flag = newsSlaveMapper.insert(news);
             if (flag == 1)
                 return true;
             else
@@ -71,7 +75,7 @@ public class NewsServiceImpl implements NewsService {
     @Override
     public boolean editNews(News news) {
         if (news != null && StringUtils.isNotBlank(news.getId())) {
-            int flag = newsMapper.update(news);
+            int flag = newsMasterMapper.update(news);
             if (flag == 1)
                 return true;
             else
@@ -84,7 +88,7 @@ public class NewsServiceImpl implements NewsService {
     @Override
     public boolean deleteNewsById(String id) {
         if (StringUtils.isNotBlank(id)) {
-            int flag = newsMapper.delete(id);
+            int flag = newsMasterMapper.delete(id);
             if (flag == 1)
                 return true;
             else
@@ -99,7 +103,7 @@ public class NewsServiceImpl implements NewsService {
         if (StringUtils.isBlank(id))
             return null;
         else
-            return newsMapper.findById(id);
+            return newsMasterMapper.findById(id);
     }
 
     @DataSource(DataSourceEnum.MASTER)
@@ -108,7 +112,7 @@ public class NewsServiceImpl implements NewsService {
         if (pageNum == null)
             pageNum = 1;
         PageHelper.startPage(pageNum, Constants.defaultPageSize);
-        List<News> news = newsMapper.findNewsByPage(keywords);
+        List<News> news = newsMasterMapper.findNewsByPage(keywords);
         PageInfo<News> page = new PageInfo<News>(news);
         log.info("# 查询默认数据库 page.toString()={}", page.toString());
         return page;
@@ -120,7 +124,7 @@ public class NewsServiceImpl implements NewsService {
     @Override
     public boolean editSlaveNews(News news) {
         if (news != null && StringUtils.isNotBlank(news.getId())) {
-            int flag = newsMapper.update(news);
+            int flag = newsSlaveMapper.update(news);
             if (flag == 1)
                 return true;
             else
@@ -133,7 +137,7 @@ public class NewsServiceImpl implements NewsService {
     @Override
     public boolean deleteSlaveNewById(String id) {
         if (StringUtils.isNotBlank(id)) {
-            int flag = newsMapper.delete(id);
+            int flag = newsSlaveMapper.delete(id);
             if (flag == 1)
                 return true;
             else
@@ -148,7 +152,7 @@ public class NewsServiceImpl implements NewsService {
         if (StringUtils.isBlank(id))
             return null;
         else
-            return newsMapper.findById(id);
+            return newsSlaveMapper.findById(id);
     }
 
     @DataSource(DataSourceEnum.SLAVE)
@@ -157,7 +161,7 @@ public class NewsServiceImpl implements NewsService {
         if (pageNum == null)
             pageNum = 1;
         PageHelper.startPage(pageNum, Constants.defaultPageSize);
-        List<News> news = newsMapper.findNewsByPage(keywords);
+        List<News> news = newsSlaveMapper.findNewsByPage(keywords);
         PageInfo<News> page = new PageInfo<News>(news);
         log.info("# 查询默认数据库 page.toString()={}", page.toString());
         return page;
