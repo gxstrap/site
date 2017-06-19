@@ -10,9 +10,11 @@ import com.site.entity.simple.News;
  */
 public interface NewsService {
 
-    // ---- master
-    public boolean addNews(News news);
+    public boolean addMasterNews(News news);
 
+    public boolean addSlaveNews(News news);
+
+    // ---- master
     public boolean editNews(News news);
 
     public boolean deleteNewsById(String id);
@@ -22,8 +24,6 @@ public interface NewsService {
     public PageInfo<News> findNewsByPage(Integer pageNum, String keywords);
 
     // ---- slave
-    public boolean addSlaveNews(News news);
-
     public boolean editSlaveNews(News news);
 
     public boolean deleteSlaveNewById(String id);

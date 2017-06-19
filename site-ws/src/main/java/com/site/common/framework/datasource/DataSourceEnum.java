@@ -5,9 +5,8 @@ package com.site.common.framework.datasource;
  * 数据源枚举常量类
  */
 public enum DataSourceEnum {
-
-        /** 主库数据源 */
-        MASTER("master", "主库数据源"), SLAVE("slave", "从库数据源"),;
+    
+    MASTER("master", "主库数据源"), SLAVE("slave", "从库数据源"),;
 
     private DataSourceEnum(String key, String description) {
         this.key = key;

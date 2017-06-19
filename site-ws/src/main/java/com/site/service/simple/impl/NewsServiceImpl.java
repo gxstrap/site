@@ -34,11 +34,9 @@ public class NewsServiceImpl implements NewsService {
     @Autowired
     private NewsMapper newsMapper;
 
-    // ---- master
-
     @DataSource(DataSourceEnum.MASTER)
     @Override
-    public boolean addNews(News news) {
+    public boolean addMasterNews(News news) {
         if (news != null) {
             news.setId(FactoryAboutKey.getPk(Master.T_NEWS));
             news.setIsDel(Constants.IS_DEL_N);
@@ -68,6 +66,7 @@ public class NewsServiceImpl implements NewsService {
             return false;
     }
 
+    // ---- master
     @DataSource(DataSourceEnum.MASTER)
     @Override
     public boolean editNews(News news) {

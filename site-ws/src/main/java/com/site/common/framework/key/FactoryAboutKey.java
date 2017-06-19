@@ -37,8 +37,8 @@ public class FactoryAboutKey {
 
     private static final Logger log = LoggerFactory.getLogger(FactoryAboutKey.class);
 
-    public static ConcurrentHashMap<String, String> masterTabPkValMap = new ConcurrentHashMap<String, String>();
-    public static ConcurrentHashMap<String, String> slaveTabPkValMap = new ConcurrentHashMap<String, String>();
+    public static ConcurrentHashMap<String, String> masterPkMap = new ConcurrentHashMap<String, String>();
+    public static ConcurrentHashMap<String, String> slavePkMap = new ConcurrentHashMap<String, String>();
 
     @Autowired
     private KeyService keyService;
@@ -54,7 +54,7 @@ public class FactoryAboutKey {
      */
     @PostConstruct
     public void init() throws Exception {
-
+        // ================================================================================================
         // master数据库当中获取表主名及对应主键名
         List<Key> masterTabs = keyService.getMasterDBTables();
         Map<String, String> masterTabMap = new HashMap<>();
@@ -111,7 +111,7 @@ public class FactoryAboutKey {
             } else {
                 newId = k.getId();
             }
-            masterTabPkValMap.put(k.getTableName(), newId);
+            masterPkMap.put(k.getTableName(), newId);
         }
 
         // ================================================================================================
@@ -169,9 +169,27 @@ public class FactoryAboutKey {
             } else {
                 newId = k.getId();
             }
-            slaveTabPkValMap.put(k.getTableName(), newId);
+            slavePkMap.put(k.getTableName(), newId);
         }
 
+    }
+
+    private static String generatePk(String code) {
+        String finalId;
+        String machineCode = code.substring(0, 4);
+        String keyValue = code.substring(4, 8);
+        String idValue = code.substring(8, code.length());
+        long id = Long.valueOf(idValue);
+        id++;
+        int idLenth = String.valueOf(id).length();
+
+        String containZero = "";
+        for (int i = 0; i < idValue.length() - idLenth; i++) {
+            containZero += "0";
+        }
+        containZero += String.valueOf(id);
+        finalId = machineCode + keyValue + containZero;
+        return finalId;
     }
 
     private static Lock masterLock = new ReentrantLock();// 锁对象
@@ -186,24 +204,12 @@ public class FactoryAboutKey {
         String finalId = "";
         while (isloap) {
             masterLock.lock();
-            String code = masterTabPkValMap.get(pk.name());
+            String code = masterPkMap.get(pk.name());
             if (StringUtils.isEmpty(code)) {
                 log.error("## 表={} ， MasterTablesPkEnum不存在相对应的键值对!", pk.name());
             } else {
-                String machineCode = code.substring(0, 4);
-                String keyValue = code.substring(4, 8);
-                String idValue = code.substring(8, code.length());
-                long id = Long.valueOf(idValue);
-                id++;
-                int idLenth = String.valueOf(id).length();
-
-                String containZero = "";
-                for (int i = 0; i < idValue.length() - idLenth; i++) {
-                    containZero += "0";
-                }
-                containZero += String.valueOf(id);
-                finalId = machineCode + keyValue + containZero;
-                masterTabPkValMap.replace(pk.name(), finalId);
+                finalId = generatePk(code);
+                masterPkMap.replace(pk.name(), finalId);
             }
 
             isloap = false;
@@ -224,24 +230,12 @@ public class FactoryAboutKey {
         String finalId = "";
         while (isloap) {
             slaveLock.lock();
-            String code = slaveTabPkValMap.get(pk.name());
+            String code = slavePkMap.get(pk.name());
             if (StringUtils.isEmpty(code)) {
                 log.error("## 表={} ， SlaveTablesPKEnum不存在相对应的键值对!", pk.name());
             } else {
-                String machineCode = code.substring(0, 4);
-                String keyValue = code.substring(4, 8);
-                String idValue = code.substring(8, code.length());
-                long id = Long.valueOf(idValue);
-                id++;
-                int idLenth = String.valueOf(id).length();
-
-                String containZero = "";
-                for (int i = 0; i < idValue.length() - idLenth; i++) {
-                    containZero += "0";
-                }
-                containZero += String.valueOf(id);
-                finalId = machineCode + keyValue + containZero;
-                slaveTabPkValMap.replace(pk.name(), finalId);
+                finalId = generatePk(code);
+                slavePkMap.replace(pk.name(), finalId);
             }
 
             isloap = false;

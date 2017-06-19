@@ -17,7 +17,7 @@ public class SimpleServiceImpl implements SimpleService {
     @Override
     public boolean saveNews(News news) {
 
-        boolean mf = newsService.addNews(news);// save master db
+        boolean mf = newsService.addMasterNews(news);// save master db
 
         boolean sf = newsService.addSlaveNews(news);// save slave db
 

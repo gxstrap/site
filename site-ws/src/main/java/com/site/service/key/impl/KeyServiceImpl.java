@@ -22,7 +22,6 @@ import com.site.service.key.KeyService;
  *
  */
 @Service("keyService")
-@DataSource(DataSourceEnum.MASTER)
 public class KeyServiceImpl implements KeyService {
 
     @Autowired
@@ -40,25 +39,25 @@ public class KeyServiceImpl implements KeyService {
         return keyList;
     }
 
-    @DataSource(DataSourceEnum.SLAVE)
-    @Override
-    public List<Key> getSlaveDBTableValues(List<Key> keys) {
-        List<Key> keyList = new ArrayList<Key>();
-        try {
-            keyList = keyMapper.getTableValues(keys);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return keyList;
-    }
-
     @DataSource(DataSourceEnum.MASTER)
     @Override
     public List<Key> getMasterDBTables() {
         List<Key> keyList = new ArrayList<Key>();
         try {
             keyList = keyMapper.getTablesByMySQL();
-            //keyList = keyMapper.getTablesBySQLite();
+            // keyList = keyMapper.getTablesBySQLite();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return keyList;
+    }
+
+    @DataSource(DataSourceEnum.SLAVE)
+    @Override
+    public List<Key> getSlaveDBTableValues(List<Key> keys) {
+        List<Key> keyList = new ArrayList<Key>();
+        try {
+            keyList = keyMapper.getTableValues(keys);
         } catch (Exception e) {
             e.printStackTrace();
         }

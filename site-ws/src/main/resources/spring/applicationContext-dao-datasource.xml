@@ -22,7 +22,7 @@
 		<property name="loginTimeout" value="${datasource.loginTimeout}" />
 		<property name="logWriter" value="${datasource.logWriter}" />
 	</bean>
-
+	
 	<bean id="masterDataSource" parent="abstractXADataSource">
 		<property name="uniqueResourceName" value="master" />
 		<property name="xaDataSourceClassName" value="${master.datasource.xaDataSourceClassName}" />
@@ -52,11 +52,11 @@
 	<bean id="dynamicDatasource" class="com.site.common.framework.datasource.DynamicDataSource">
 		<property name="targetDataSources">
 			<map key-type="java.lang.String">
-				<entry key="slave" value-ref="slaveDataSource" />
 				<entry key="master" value-ref="masterDataSource" />
+				<entry key="slave" value-ref="slaveDataSource" />
 			</map>
 		</property>
-		<property name="defaultTargetDataSource" ref="slaveDataSource" />
+		<property name="defaultTargetDataSource" ref="masterDataSource" />
 	</bean>
 
 	<bean id="dataSourceAspect" class="com.site.common.framework.datasource.DataSourceAspect" />

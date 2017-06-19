@@ -7,7 +7,7 @@
     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 	<description>MyBatis的数据库持久层配置/配置主-从数据源</description>
-
+	
 	<bean id="masterSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="masterDataSource" />
 		<property name="plugins">
@@ -40,8 +40,8 @@
 		<constructor-arg ref="slaveSqlSessionFactory" />
 		<property name="targetSqlSessionFactorys">
 			<map>
-				<entry value-ref="slaveSqlSessionFactory" key="slave" />
 				<entry value-ref="masterSqlSessionFactory" key="master" />
+				<entry value-ref="slaveSqlSessionFactory" key="slave" />
 			</map>
 		</property>
 	</bean>
